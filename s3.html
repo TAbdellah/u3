@@ -435,6 +435,391 @@
                 font-size: 1.2em;
             }
         }
+        @media (max-width: 1400px) {
+            .problem-container,
+            .consignes-grid,
+            .rules-container,
+            .images-container,
+            .image-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            body {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .header p {
+                font-size: 1.4em;
+            }
+
+            .section h2 {
+                font-size: 2em;
+            }
+
+            .problem-card h3 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1.2em;
+            }
+
+            .competence {
+                padding: 20px 15px;
+                font-size: 1.4em;
+            }
+
+            .section {
+                padding: 25px 15px;
+            }
+
+            .section h2 {
+                font-size: 1.6em;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+            }
+
+            .problem-card {
+                padding: 20px 15px;
+            }
+
+            .problem-card h3 {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+
+            .problem-card p,
+            .problem-card li {
+                font-size: 1em;
+                line-height: 1.6;
+            }
+
+            .problem-question {
+                padding: 20px 15px;
+            }
+
+            .problem-question h3 {
+                font-size: 1.3em;
+            }
+
+            .problem-question p {
+                font-size: 1.1em;
+            }
+
+            .consigne-item {
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .consigne-item:before {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+            }
+
+            .consigne-text {
+                font-size: 1em;
+            }
+
+            .objective-item {
+                padding: 15px 20px;
+            }
+
+            .objective-item:before {
+                font-size: 1.5em;
+            }
+
+            .objective-text {
+                font-size: 1.1em;
+            }
+
+            .rules-column h3 {
+                font-size: 1.4em;
+                margin-bottom: 20px;
+            }
+
+            .rule {
+                padding: 15px;
+            }
+
+            .rule-label {
+                font-size: 1.1em;
+            }
+
+            .rule-formula {
+                font-size: 0.9em;
+                padding: 12px;
+            }
+
+            table {
+                font-size: 0.85em;
+            }
+
+            th {
+                padding: 15px 8px;
+                font-size: 1em;
+            }
+
+            td {
+                padding: 12px 8px;
+                font-size: 0.95em;
+            }
+
+            .zoom-controls {
+                top: 10px;
+                right: 10px;
+                padding: 12px 15px;
+                gap: 8px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .zoom-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+            }
+
+            .zoom-display {
+                font-size: 1em;
+                min-width: 60px;
+            }
+
+            .zoom-reset {
+                padding: 8px 15px;
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+                font-size: 13px;
+            }
+
+            .container {
+                padding: 15px 10px;
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 20px 15px;
+                margin-bottom: 30px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+                margin-bottom: 15px;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .competence {
+                padding: 15px 10px;
+                font-size: 1.2em;
+                margin-bottom: 30px;
+            }
+
+            .section {
+                padding: 20px 12px;
+                margin-bottom: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.4em;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom-width: 3px;
+            }
+
+            .problem-card {
+                padding: 15px 12px;
+            }
+
+            .problem-card h3 {
+                font-size: 1.15em;
+                margin-bottom: 12px;
+            }
+
+            .problem-card p {
+                font-size: 0.95em !important;
+                line-height: 1.5;
+                margin-bottom: 12px;
+            }
+
+            .problem-card li {
+                font-size: 0.95em;
+                margin-bottom: 10px;
+            }
+
+            .data-highlight {
+                font-size: 1em;
+                padding: 3px 8px;
+            }
+
+            .problem-question {
+                padding: 15px 12px;
+            }
+
+            .problem-question h3 {
+                font-size: 1.15em;
+                margin-bottom: 15px;
+            }
+
+            .problem-question p {
+                font-size: 1em;
+            }
+
+            .consigne-item {
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .consigne-item:before {
+                width: 35px;
+                height: 35px;
+                font-size: 1em;
+            }
+
+            .consigne-text {
+                font-size: 0.95em;
+            }
+
+            .objective-item {
+                padding: 12px 15px;
+                gap: 15px;
+            }
+
+            .objective-item:before {
+                font-size: 1.3em;
+            }
+
+            .objective-text {
+                font-size: 1em;
+            }
+
+            .rules-column h3 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+
+            .rule {
+                padding: 12px;
+                margin: 12px 0;
+            }
+
+            .rule-label {
+                font-size: 1em;
+                margin-bottom: 8px;
+            }
+
+            .rule-formula {
+                font-size: 0.85em;
+                padding: 10px;
+            }
+
+            .image-box {
+                padding: 15px;
+            }
+
+            .image-box h4 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+
+            .image-box img {
+                width: 100%;
+                height: auto;
+            }
+
+            .image-container {
+                padding: 15px;
+            }
+
+            .image-container h4 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+
+            .image-container img {
+                width: 100%;
+                height: auto;
+            }
+
+            table {
+                font-size: 0.75em;
+            }
+
+            th {
+                padding: 10px 5px;
+                font-size: 0.9em;
+            }
+
+            td {
+                padding: 8px 5px;
+                font-size: 0.85em;
+            }
+
+            .zoom-controls {
+                position: fixed;
+                top: 5px;
+                right: 5px;
+                left: 5px;
+                padding: 10px;
+                gap: 6px;
+                border-radius: 15px;
+            }
+
+            .zoom-button {
+                width: 35px;
+                height: 35px;
+                font-size: 1.1em;
+            }
+
+            .zoom-display {
+                font-size: 0.9em;
+                min-width: 50px;
+            }
+
+            .zoom-reset {
+                padding: 6px 12px;
+                font-size: 0.8em;
+                border-radius: 15px;
+            }
+        }
     </style>
 </head>
 
