@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi du projet de vente d'Œufs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a1a;
+            padding: 30px;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #a84ba3 0%, #c2a3d4 100%);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.8em;
+            opacity: 0.95;
+        }
+
+        .competence {
+            background: #fff3cd;
+            border: 5px solid #ffc107;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 50px;
+            font-size: 2em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 40px;
+            margin-bottom: 50px;
+            border-radius: 12px;
+            border-left: 8px solid #a84ba3;
+        }
+
+        .section h2 {
+            color: #a84ba3;
+            margin-bottom: 35px;
+            font-size: 2.5em;
+            border-bottom: 4px solid #a84ba3;
+            padding-bottom: 20px;
+        }
+
+        .problem-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            border-top: 6px solid #a84ba3;
+        }
+
+        .problem-card h3 {
+            color: #a84ba3;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .problem-card p {
+            color: #333;
+            line-height: 2;
+            margin-bottom: 18px;
+            font-size: 1.2em;
+        }
+
+        .problem-card ul {
+            margin-left: 30px;
+            color: #333;
+            line-height: 2.2;
+        }
+
+        .problem-card li {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .data-highlight {
+            background: #e8ddf0;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #4a1a5c;
+            font-size: 1.1em;
+        }
+
+        .problem-question {
+            background: #fff3cd;
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 6px solid #ffc107;
+            margin-top: 30px;
+        }
+
+        .problem-question h3 {
+            color: #856404;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .problem-question p {
+            color: #333;
+            line-height: 2;
+            font-weight: 500;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .consignes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            counter-reset: consigne-counter;
+        }
+
+        .consigne-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 6px solid #a84ba3;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .consigne-item:before {
+            content: counter(consigne-counter);
+            counter-increment: consigne-counter;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #a84ba3;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .consigne-text {
+            color: #333;
+            font-weight: 500;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .objectives {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .objective-item {
+            background: #e8ddf0;
+            padding: 20px 25px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 6px solid #a84ba3;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .objective-item:before {
+            content: "✓";
+            color: #a84ba3;
+            font-weight: bold;
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+
+        .objective-text {
+            color: #333;
+            font-size: 1.3em;
+            line-height: 1.6;
+        }
+
+        .rules-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .rules-column h3 {
+            color: #a84ba3;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #a84ba3;
+        }
+
+        .rule {
+            background: #e8ddf0;
+            padding: 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+            border-left: 6px solid #a84ba3;
+        }
+
+        .rule-label {
+            font-weight: bold;
+            color: #4a1a5c;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .rule-formula {
+            background: #fff;
+            padding: 18px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            color: #333;
+            margin-top: 12px;
+            border: 2px solid #ddd;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .images-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .image-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #a84ba3;
+            text-align: center;
+        }
+
+        .image-box h4 {
+            color: #a84ba3;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 2px solid #333;
+        }
+
+        th {
+            background: #a84ba3;
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid #333;
+            font-size: 1.3em;
+        }
+
+        td {
+            padding: 20px 15px;
+            text-align: center;
+            border: 2px solid #ddd;
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        tr:nth-child(odd) td {
+            background: #f0f0f0;
+        }
+
+        tr:nth-child(even) td {
+            background: #e8ddf0;
+        }
+
+        .highlight {
+            background: #d4edda;
+            font-weight: bold;
+            color: #155724;
+            border-radius: 5px;
+        }
+
+        tr:last-child {
+            background: #d4edda !important;
+        }
+
+        tr:last-child td {
+            background: #d4edda !important;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .zoom-controls {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .zoom-button {
+            background: #a84ba3;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-button:hover {
+            background: #8b3a87;
+            transform: scale(1.1);
+        }
+
+        .zoom-button:active {
+            transform: scale(0.95);
+        }
+
+        .zoom-display {
+            font-weight: bold;
+            color: #a84ba3;
+            font-size: 1.2em;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .zoom-reset {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-reset:hover {
+            background: #5a6268;
+        }
+
+        @media (max-width: 1400px) {
+
+            .problem-container,
+            .consignes-grid,
+            .rules-container,
+            .images-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .zoom-controls {
+                top: 10px;
+                right: 10px;
+                padding: 15px 20px;
+                gap: 10px;
+            }
+
+            .zoom-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zoom-controls">
+        <button class="zoom-button" id="zoomOut" title="Diminuer (-)">−</button>
+        <span class="zoom-display" id="zoomLevel">100%</span>
+        <button class="zoom-button" id="zoomIn" title="Augmenter (+)">+</button>
+        <button class="zoom-reset" id="zoomReset" title="Réinitialiser">Réinitialiser</button>
+    </div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Tableur</h1>
+            <p>🥚 Vente d'Œufs - Document de Calculs d'analyse de rentabilité avec Excel</p>
+        </div>
+
+        <!-- COMPETENCE -->
+        <div class="competence">
+            🎯 COMPÉTENCE C12: Produire un document de calculs
+        </div>
+
+        <!-- SITUATION PROBLEME -->
+        <div class="section">
+            <h2>🎯 Situation-Problème</h2>
+
+            <div class="problem-container">
+                <div class="problem-card">
+                    <h3>📋 Contexte</h3>
+                    <p style="font-size: x-large;"> Tu es un élève entreprenant et tu décides de lancer une petite
+                        activité pendant ton temps libre pour
+                        gagner ton argent de poche.</p>
+                    <p style="font-size: x-large;"> Tu élèves quelques poules et tu vends les œufs produits chaque
+                        semaine. Pour bien gérer ton projet,
+                        tu notes le nombre d’œufs produits, les œufs cassés et les œufs vendus.</p>
+                    <p style="font-size: x-large;"> Afin de suivre ton activité comme un vrai entrepreneur, tu
+                    utilises un tableur pour organiser
+                    les données et analyser les résultats.</p>
+                </div>
+
+                <div class="problem-card">
+                    <h3>📊 Données Fournies</h3>
+                    <ul>
+                        <li><span class="data-highlight">Prix de vente :</span> 2,00 MAD par œuf</li>
+                        <li><span class="data-highlight">Dépenses hebdomadaires :</span> 10 MAD par semaine (transport,
+                            boîtes…)</li>
+                        <li><span class="data-highlight">Période :</span> 4 semaines d'observation</li>
+                        <li><span class="data-highlight">Données :</span> Tableau complet fourni ci-dessous</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-question">
+                <h3>❓ Questions à Résoudre</h3>
+                <p>1. Calcule le bénéfice net total de cette activité sur les 4 semaines.</p>
+                <p>2. Cette activité te permet-elle réellement de gagner de l'argent ?</p>
+                <p>3. Est-elle rentable ? Justifie ta réponse avec les données.</p>
+            </div>
+        </div>
+
+        <!-- CONSIGNES DE TRAVAIL -->
+        <div class="section">
+            <h2>✏️ Consignes de Travail</h2>
+            <div class="consignes-grid">
+                <div class="consigne-item">
+                    <span class="consigne-text">Créer le tableau dans Excel avec toutes les données fournies</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Appliquer les formules pour chaque colonne (œufs vendus, revenu,
+                        bénéfice)</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Calculer les totaux en bas du tableau avec la fonction Somme</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Analyser les données avec les fonctions MAX et MIN</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Formater le tableau avec des couleurs, bordures et police adaptée</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Répondre aux questions posées dans la situation-problème</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Justifier votre réponse avec des calculs et des données</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Sauvegarder le fichier avec un nom explicite</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- TABLEAU DE DONNEES -->
+        <div class="section">
+            <h2>📊 Tableau de Données à Analyser</h2>
+
+            <!-- IMAGES -->
+            <div class="image-section">
+                <div class="image-container">
+                    <h4 style="margin-bottom: 10px; color: #a84ba3;">Image 1: Tableau de données version Fr</h4>
+                    <img src="https://i.imgur.com/ShlwMZX.png" alt="Tableau de données - Vente d'œufs">
+                </div>
+
+                <div class="image-container">
+                    <h4 style="margin-bottom: 10px; color: #a84ba3;">Image 2: Tableau de données version Ar</h4>
+                    <img src="https://i.imgur.com/lWM7oGY.png" alt="RéSommeé et analyses - Vente d'œufs">
+                </div>
+            </div>
+        </div>
+        <!-- REGLES DE CALCUL -->
+        <div class="section">
+            <h2>📐 Règles de Calcul</h2>
+            <div class="rules-container">
+                <div class="rules-column">
+                    <h3>🇫🇷 Français</h3>
+
+                    <div class="rule">
+                        <div class="rule-label">1️⃣ Œufs vendus</div>
+                        <div class="rule-formula">Œufs vendus = Œufs produits - Œufs cassés</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">2️⃣ Profit brut (MAD)</div>
+                        <div class="rule-formula">Profit brut = Œufs vendus × Prix</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">3️⃣ Profit net (MAD)</div>
+                        <div class="rule-formula">Profit net = Revenu brut - Dépenses</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">4️⃣ Totaux</div>
+                        <div class="rule-formula">Total = Somme() <br> MAX = MAX() <br> MIN = MIN()</div>
+                    </div>
+                </div>
+
+                <div class="rules-column">
+                    <h3>🇲🇦 العربية</h3>
+
+                    <div class="rule">
+                        <div class="rule-label">1️⃣ البيض المباع</div>
+                        <div class="rule-formula">البيض المباع = البيض المنتج - البيض المكسور</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">2️⃣ الربح الخام</div>
+                        <div class="rule-formula">الربح الخام = البيض المباع × السعر</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">3️⃣ الربح الصافي</div>
+                        <div class="rule-formula">الربح الصافي= الربح الخام - المصاريف</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">4️⃣ المجاميع</div>
+                        <div class="rule-formula">المجموع = Somme() <br> الأقصى = MAX() <br> الأدنى = MIN()</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- COMPETENCE DETAILS -->
+        <div class="section">
+            <h2>📖 Compétence à Développer</h2>
+            <div class="problem-card">
+                <h3 style="border: none; margin-bottom: 20px;">C12: Produire un document de calculs</h3>
+                <p style="color: #333; margin-bottom: 20px;">
+                    Cette compétence te permettra de développer les capacités suivantes :
+                </p>
+                <ul style="margin-top: 20px; margin-left: 30px; color: #333; line-height: 2;">
+                    <li>Organiser des données dans un tableau structuré et logique</li>
+                    <li>Appliquer des formules mathématiques correctes et pertinentes</li>
+                    <li>Utiliser les fonctions d'un tableur (Somme, MAX, MIN, Moyenne)</li>
+                    <li>Analyser les résultats de manière critique et réfléchie</li>
+                    <li>Présenter ton travail de façon claire, nette et professionnelle</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- OBJECTIFS -->
+        <div class="section">
+            <h2>📚 Objectifs d'Apprentissage</h2>
+            <div class="objectives">
+                <div class="objective-item">
+                    <span class="objective-text">Appliquer les règles de calcul pour déterminer les œufs vendus chaque
+                        semaine</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Calculer le revenu brut (profit brut) généré par chaque semaine</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Calculer le bénéfice net en soustrayant les dépenses du revenu</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Utiliser les fonctions de tableur pour calculer les totaux et
+                        statistiques</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Formater un tableau de manière professionnelle et lisible</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Analyser les résultats et répondre à la question de rentabilité avec
+                        justification</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentZoom = 100;
+        const minZoom = 50;
+        const maxZoom = 200;
+        const zoomStep = 10;
+
+        const container = document.querySelector('.container');
+        const zoomInBtn = document.getElementById('zoomIn');
+        const zoomOutBtn = document.getElementById('zoomOut');
+        const zoomResetBtn = document.getElementById('zoomReset');
+        const zoomLevelDisplay = document.getElementById('zoomLevel');
+
+        function updateZoom() {
+            container.style.transform = `scale(${currentZoom / 100})`;
+            container.style.transformOrigin = 'top center';
+            zoomLevelDisplay.textContent = `${currentZoom}%`;
+            localStorage.setItem('pageZoom', currentZoom);
+        }
+
+        zoomInBtn.addEventListener('click', () => {
+            if (currentZoom < maxZoom) {
+                currentZoom += zoomStep;
+                updateZoom();
+            }
+        });
+
+        zoomOutBtn.addEventListener('click', () => {
+            if (currentZoom > minZoom) {
+                currentZoom -= zoomStep;
+                updateZoom();
+            }
+        });
+
+        zoomResetBtn.addEventListener('click', () => {
+            currentZoom = 100;
+            updateZoom();
+        });
+
+        // Charger le zoom sauvegardé
+        const savedZoom = localStorage.getItem('pageZoom');
+        if (savedZoom) {
+            currentZoom = parseInt(savedZoom);
+            updateZoom();
+        }
+
+        // Support du clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === '+' || e.key === '=') {
+                    e.preventDefault();
+                    zoomInBtn.click();
+                } else if (e.key === '-') {
+                    e.preventDefault();
+                    zoomOutBtn.click();
+                } else if (e.key === '0') {
+                    e.preventDefault();
+                    zoomResetBtn.click();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
