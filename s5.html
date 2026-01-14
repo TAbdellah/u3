@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse des Performances Sportives</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a1a;
+            padding: 30px;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.8em;
+            opacity: 0.95;
+        }
+
+        .competence {
+            background: #fff3cd;
+            border: 5px solid #ffc107;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 50px;
+            font-size: 2em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 40px;
+            margin-bottom: 50px;
+            border-radius: 12px;
+            border-left: 8px solid #ff6b6b;
+        }
+
+        .section h2 {
+            color: #ff6b6b;
+            margin-bottom: 35px;
+            font-size: 2.5em;
+            border-bottom: 4px solid #ff6b6b;
+            padding-bottom: 20px;
+        }
+
+        .problem-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            border-top: 6px solid #ff6b6b;
+        }
+
+        .problem-card h3 {
+            color: #ff6b6b;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .problem-card p {
+            color: #333;
+            line-height: 2;
+            margin-bottom: 18px;
+            font-size: 1.2em;
+        }
+
+        .problem-card ul {
+            margin-left: 30px;
+            color: #333;
+            line-height: 2.2;
+        }
+
+        .problem-card li {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .data-highlight {
+            background: #ffe0e0;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #8b0000;
+            font-size: 1.1em;
+        }
+
+        .problem-question {
+            background: #fff3cd;
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 6px solid #ffc107;
+            margin-top: 30px;
+        }
+
+        .problem-question h3 {
+            color: #856404;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .problem-question p {
+            color: #333;
+            line-height: 2;
+            font-weight: 500;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .consignes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            counter-reset: consigne-counter;
+        }
+
+        .consigne-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 6px solid #ff6b6b;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .consigne-item:before {
+            content: counter(consigne-counter);
+            counter-increment: consigne-counter;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ff6b6b;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .consigne-text {
+            color: #333;
+            font-weight: 500;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .objectives {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .objective-item {
+            background: #ffe0e0;
+            padding: 20px 25px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 6px solid #ff6b6b;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .objective-item:before {
+            content: "✓";
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+
+        .objective-text {
+            color: #333;
+            font-size: 1.3em;
+            line-height: 1.6;
+        }
+
+        .rules-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .rules-column h3 {
+            color: #ff6b6b;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ff6b6b;
+        }
+
+        .rule {
+            background: #ffe0e0;
+            padding: 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+            border-left: 6px solid #ff6b6b;
+        }
+
+        .rule-label {
+            font-weight: bold;
+            color: #8b0000;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .rule-formula {
+            background: #fff;
+            padding: 18px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            color: #333;
+            margin-top: 12px;
+            border: 2px solid #ddd;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        .images-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .image-card {
+            border: 3px solid #ff6b6b;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 2px solid #333;
+        }
+
+        th {
+            background: #ff6b6b;
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid #333;
+            font-size: 1.3em;
+        }
+
+        td {
+            padding: 20px 15px;
+            text-align: center;
+            border: 2px solid #ddd;
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        .activity-name {
+            text-align: left !important;
+            font-weight: bold;
+        }
+
+        tr:nth-child(odd) td {
+            background: #f0f0f0;
+        }
+
+        tr:nth-child(even) td {
+            background: #ffe0e0;
+        }
+
+        .stats-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .stats-summary table {
+            margin-top: 20px;
+        }
+
+        .stats-summary td:first-child {
+            text-align: left;
+            font-weight: bold;
+            background: #ffe0e0 !important;
+        }
+
+        .stats-summary td:last-child {
+            background: #d4edda !important;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .zoom-controls {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .zoom-button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-button:hover {
+            background: #e85555;
+            transform: scale(1.1);
+        }
+
+        .zoom-button:active {
+            transform: scale(0.95);
+        }
+
+        .zoom-display {
+            font-weight: bold;
+            color: #ff6b6b;
+            font-size: 1.2em;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .zoom-reset {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-reset:hover {
+            background: #5a6268;
+        }
+
+        @media (max-width: 1400px) {
+
+            .problem-container,
+            .consignes-grid,
+            .rules-container,
+            .images-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .zoom-controls {
+                top: 10px;
+                right: 10px;
+                padding: 15px 20px;
+                gap: 10px;
+            }
+
+            .zoom-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+            }
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #2e7d32;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .download-section p {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zoom-controls">
+        <button class="zoom-button" id="zoomOut" title="Diminuer (-)">−</button>
+        <span class="zoom-display" id="zoomLevel">100%</span>
+        <button class="zoom-button" id="zoomIn" title="Augmenter (+)">+</button>
+        <button class="zoom-reset" id="zoomReset" title="Réinitialiser">Réinitialiser</button>
+    </div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Tableur</h1>
+            <p>🏃 Analyse des Performances Sportives - Document de Calculs avec Tableur</p>
+        </div>
+
+        <!-- COMPETENCE -->
+        <div class="competence">
+            🎯 COMPÉTENCE C12: Produire un document de calculs
+        </div>
+
+        <!-- SITUATION PROBLEME -->
+        <div class="section">
+            <h2>🎯 Situation-Problème</h2>
+
+            <div class="problem-container">
+                <div class="problem-card">
+                    <h3>📋 Contexte</h3>
+                    <p style="font-size: xx-large;">Tu es un élève passionné par le sport et tu participes à un club sportif scolaire.</p>
+                    <p style="font-size: xx-large;">Pendant une semaine, tu as noté toutes tes activités sportives (course, vélo, natation, marche rapide) dans un tableau : la date, le type d'exercice, la durée, la distance parcourue et les calories brûlées.</p>
+                    <p style="font-size: xx-large;">Ton professeur d'informatique te demande d'analyser tes performances sportives à l'aide d'un tableur afin de mieux comprendre tes efforts et de proposer un petit bilan clair et chiffré.</p>
+                </div>
+
+
+            </div>
+
+            <div class="problem-question">
+                <h3>❓ Questions à Résoudre</h3>
+                <p>1. Quel est le temps total d'exercice effectué pendant la semaine ?</p>
+                <p>2. Combien de kilomètres au total ont été parcourus ?</p>
+                <p>3. Quel est le nombre total de calories brûlées au cours de la semaine ?</p>
+                <p>4. Quel type d'exercice a brûlé le plus de calories ?</p>
+                <p>5. Quel est le temps d'exercice moyen par jour ?</p>
+            </div>
+        </div>
+
+        <!-- CONSIGNES DE TRAVAIL -->
+        <div class="section">
+            <h2>✏️ Consignes de Travail</h2>
+            <div class="consignes-grid">
+                <div class="consigne-item">
+                    <span class="consigne-text">Créer le tableau dans Excel avec toutes les données (Date, Activité, Durée, Distance, Calories)</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Utiliser la fonction SOMME() pour calculer le temps total d'exercice</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Utiliser la fonction SOMME() pour calculer la distance totale parcourue</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Utiliser la fonction SOMME() pour calculer les calories brûlées totales</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Utiliser la fonction MOYENNE() pour calculer le temps moyen par jour</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Utiliser la fonction MAX() pour identifier le jour le plus productif</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Formater le tableau avec des couleurs appropriées (couleurs différentes par activité)</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Créer un tableau de synthèse avec les statistiques globales et les résultats</span>
+                </div>
+            </div>
+            <div class="download-section">
+                <p>📥 Téléchargez le fichier Excel de départ :</p>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP5.xlsx" class="download-btn"
+                    download>
+                    ⬇️ Télécharger le fichier Excel
+                </a>
+            </div>
+        </div>
+
+        <!-- TABLEAU DE DONNEES -->
+        <div class="section">
+            <h2>📊 Tableau de Données à Analyser</h2>
+
+            <!-- IMAGES -->
+            <div class="images-container">
+                <div class="image-card">
+                    <img src="https://i.imgur.com/npFAslf.png" alt="Sports Performance Statistics Chart - French">
+                </div>
+                <div class="image-card">
+                    <img src="https://i.imgur.com/Jd85rU7.png" alt="Sports Performance Statistics Chart - Arabic">
+                </div>
+            </div>
+        </div>
+
+        <!-- REGLES DE CALCUL -->
+        <div class="section">
+            <h2>📋 Règles de Calcul</h2>
+            <div class="rules-container">
+                <div class="rules-column">
+                    <h3>🇫🇷 Français</h3>
+
+                    <div class="rule">
+                        <div class="rule-label">1️⃣ Total séances</div>
+                        <div class="rule-formula">=NBVAL(D3:D9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">2️⃣ Durée minimale (min)</div>
+                        <div class="rule-formula">=MIN(D3:D9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">3️⃣ Durée maximale (min)</div>
+                        <div class="rule-formula">=MAX(D3:D9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">4️⃣ Durée totale (min)</div>
+                        <div class="rule-formula">=SOMME(D3:D9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">5️⃣ Distance totale (km)</div>
+                        <div class="rule-formula">=SOMME(E3:E9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">6️⃣ Distance moyenne (km)</div>
+                        <div class="rule-formula">=MOYENNE(E3:E9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">7️⃣ Calories totales</div>
+                        <div class="rule-formula">=SOMME(F3:F9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">8️⃣ Durée totale (h)</div>
+                        <div class="rule-formula">=SOMME(D3:D9)/60</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">9️⃣ Vitesse (km/h)</div>
+                        <div class="rule-formula">=D3/C3*60</div>
+                    </div>
+                </div>
+
+                <div class="rules-column">
+                    <h3>🇲🇦 العربية</h3>
+
+                    <div class="rule">
+                        <div class="rule-label">1️⃣ عدد الحصص</div>
+                        <div class="rule-formula">=NBVAL(D3:D9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">2️⃣ الحد الأدنى للمدة (دقيقة)</div>
+                        <div class="rule-formula">=MIN(D3:D9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">3️⃣ الحد الأقصى للمدة (دقيقة)</div>
+                        <div class="rule-formula">=MAX(D3:D9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">4️⃣ إجمالي المدة (دقيقة)</div>
+                        <div class="rule-formula">=SOMME(D3:D9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">5️⃣ إجمالي المسافة (كم)</div>
+                        <div class="rule-formula">=SOMME(E3:E9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">6️⃣ متوسط المسافة (كم)</div>
+                        <div class="rule-formula">=MOYENNE(E3:E9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">7️⃣ إجمالي السعرات الحرارية</div>
+                        <div class="rule-formula">=SOMME(F3:F9)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">8️⃣ إجمالي المدة (ساعة)</div>
+                        <div class="rule-formula">=SOMME(D3:D9)/60</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">9️⃣ السرعة (كم/س)</div>
+                        <div class="rule-formula">=D3/C3*60</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPETENCE DETAILS -->
+        <div class="section">
+            <h2>📖 Compétence à Développer</h2>
+            <div class="problem-card">
+                <h3 style="border: none; margin-bottom: 20px;">C12: Produire un document de calculs</h3>
+                <p style="color: #333; margin-bottom: 20px;">
+                    Cette compétence te permettra de développer les capacités suivantes :
+                </p>
+                <ul style="margin-top: 20px; margin-left: 30px; color: #333; line-height: 2;">
+                    <li>Organiser des données personnelles et sportives dans un tableau structuré</li>
+                    <li>Utiliser les fonctions statistiques de base (SOMME, MOYENNE, MAX, MIN)</li>
+                    <li>Analyser tes performances et extraire des informations clés sur ta progression</li>
+                    <li>Créer des formules pour calculer des totaux et des moyennes</li>
+                    <li>Présenter les résultats de manière professionnelle et claire</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- OBJECTIFS -->
+        <div class="section">
+            <h2>📚 Objectifs d'Apprentissage</h2>
+            <div class="objectives">
+                <div class="objective-item">
+                    <span class="objective-text">Saisir correctement toutes les données du tableau dans Excel</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Utiliser les fonctions SOMME() et MOYENNE() pour calculer les statistiques</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Analyser et interpréter les résultats obtenus pour évaluer tes performances sportives</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Mettre en forme un document Excel professionnel et lisible</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const zoomDisplay = document.getElementById('zoomLevel');
+        const zoomInBtn = document.getElementById('zoomIn');
+        const zoomOutBtn = document.getElementById('zoomOut');
+        const zoomResetBtn = document.getElementById('zoomReset');
+
+        let currentZoom = 100;
+        const minZoom = 50;
+        const maxZoom = 200;
+        const zoomStep = 10;
+
+        function updateZoom() {
+            const zoomValue = currentZoom / 100;
+            container.style.transform = `scale(${zoomValue})`;
+            container.style.transformOrigin = 'top center';
+            zoomDisplay.textContent = `${currentZoom}%`;
+        }
+
+        zoomInBtn.addEventListener('click', () => {
+            if (currentZoom < maxZoom) {
+                currentZoom += zoomStep;
+                updateZoom();
+            }
+        });
+
+        zoomOutBtn.addEventListener('click', () => {
+            if (currentZoom > minZoom) {
+                currentZoom -= zoomStep;
+                updateZoom();
+            }
+        });
+
+        zoomResetBtn.addEventListener('click', () => {
+            currentZoom = 100;
+            updateZoom();
+        });
+    </script>
+</body>
+
+</html>
