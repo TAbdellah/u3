@@ -435,7 +435,9 @@
                 font-size: 1.2em;
             }
         }
+
         @media (max-width: 1400px) {
+
             .problem-container,
             .consignes-grid,
             .rules-container,
@@ -820,6 +822,46 @@
                 border-radius: 15px;
             }
         }
+
+        .download-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #2e7d32;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .download-section p {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 
@@ -857,8 +899,8 @@
                         semaine. Pour bien gérer ton projet,
                         tu notes le nombre d’œufs produits, les œufs cassés et les œufs vendus.</p>
                     <p style="font-size: x-large;"> Afin de suivre ton activité comme un vrai entrepreneur, tu
-                    utilises un tableur pour organiser
-                    les données et analyser les résultats.</p>
+                        utilises un tableur pour organiser
+                        les données et analyser les résultats.</p>
                 </div>
 
                 <div class="problem-card">
@@ -910,6 +952,14 @@
                 <div class="consigne-item">
                     <span class="consigne-text">Sauvegarder le fichier avec un nom explicite</span>
                 </div>
+            </div>
+
+            <div class="download-section">
+                <p>📥 Téléchargez le fichier Excel de départ :</p>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP3.xlsx" class="download-btn"
+                    download>
+                    ⬇️ Télécharger le fichier Excel
+                </a>
             </div>
         </div>
 

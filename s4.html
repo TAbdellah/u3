@@ -431,6 +431,7 @@
         }
 
         @media (max-width: 1400px) {
+
             .problem-container,
             .consignes-grid,
             .rules-container,
@@ -452,6 +453,46 @@
                 height: 40px;
                 font-size: 1.2em;
             }
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #2e7d32;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .download-section p {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
         }
     </style>
 </head>
@@ -483,18 +524,25 @@
             <div class="problem-container">
                 <div class="problem-card">
                     <h3>📋 Contexte</h3>
-                    <p style="font-size: x-large;">Tu es un analyste sportif débutant et tu souhaites analyser les statistiques de la Premier League anglaise pour mieux comprendre les performances des équipes.</p>
-                    <p style="font-size: x-large;">Tu disposes d'un tableau contenant les résultats de 11 équipes avec leurs victoires, matchs nuls, défaites et autres statistiques importantes.</p>
-                    <p style="font-size: x-large;">Afin de produire une analyse professionnelle, tu utilises un tableur pour organiser les données et extraire des informations statistiques clés.</p>
+                    <p style="font-size: x-large;">Tu es un analyste sportif débutant et tu souhaites analyser les
+                        statistiques de la Premier League anglaise pour mieux comprendre les performances des équipes.
+                    </p>
+                    <p style="font-size: x-large;">Tu disposes d'un tableau contenant les résultats de 11 équipes avec
+                        leurs victoires, matchs nuls, défaites et autres statistiques importantes.</p>
+                    <p style="font-size: x-large;">Afin de produire une analyse professionnelle, tu utilises un tableur
+                        pour organiser les données et extraire des informations statistiques clés.</p>
                 </div>
 
                 <div class="problem-card">
                     <h3>📊 Données Fournies</h3>
                     <ul>
                         <li><span class="data-highlight">Nombre d'équipes :</span> 11 équipes analysées</li>
-                        <li><span class="data-highlight">Statistiques :</span> Victoires, Matchs nuls, Défaites, Buts pour/contre</li>
-                        <li><span class="data-highlight">Calcul des points :</span> Victoire = 3 points, Nul = 1 point</li>
-                        <li><span class="data-highlight">Classement :</span> Du meilleur (Liverpool) au moins bon (Newcastle)</li>
+                        <li><span class="data-highlight">Statistiques :</span> Victoires, Matchs nuls, Défaites, Buts
+                            pour/contre</li>
+                        <li><span class="data-highlight">Calcul des points :</span> Victoire = 3 points, Nul = 1 point
+                        </li>
+                        <li><span class="data-highlight">Classement :</span> Du meilleur (Liverpool) au moins bon
+                            (Newcastle)</li>
                     </ul>
                 </div>
             </div>
@@ -519,16 +567,19 @@
                     <span class="consigne-text">Utiliser la fonction SOMME() pour calculer les totaux</span>
                 </div>
                 <div class="consigne-item">
-                    <span class="consigne-text">Utiliser la fonction MAX() pour trouver l'équipe avec le plus de points</span>
+                    <span class="consigne-text">Utiliser la fonction MAX() pour trouver l'équipe avec le plus de
+                        points</span>
                 </div>
                 <div class="consigne-item">
-                    <span class="consigne-text">Utiliser la fonction MIN() pour trouver l'équipe avec le moins de points</span>
+                    <span class="consigne-text">Utiliser la fonction MIN() pour trouver l'équipe avec le moins de
+                        points</span>
                 </div>
                 <div class="consigne-item">
                     <span class="consigne-text">Utiliser la fonction NB() pour compter le nombre d'équipes</span>
                 </div>
                 <div class="consigne-item">
-                    <span class="consigne-text">Formater le tableau avec des couleurs appropriées (vert pour les qualifiés, rouge pour les relégués)</span>
+                    <span class="consigne-text">Formater le tableau avec des couleurs appropriées (vert pour les
+                        qualifiés, rouge pour les relégués)</span>
                 </div>
                 <div class="consigne-item">
                     <span class="consigne-text">Créer un tableau de synthèse avec les statistiques globales</span>
@@ -537,12 +588,19 @@
                     <span class="consigne-text">Sauvegarder le fichier avec un nom explicite</span>
                 </div>
             </div>
+            <div class="download-section">
+                <p>📥 Téléchargez le fichier Excel de départ :</p>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP4.xlsx" class="download-btn"
+                    download>
+                    ⬇️ Télécharger le fichier Excel
+                </a>
+            </div>
         </div>
 
         <!-- TABLEAU DE DONNEES -->
         <div class="section">
             <h2>📊 Tableau de Données à Analyser</h2>
-            
+
             <!-- IMAGES -->
             <div class="images-container">
                 <div class="image-card">
@@ -647,7 +705,8 @@
                     <span class="objective-text">Utiliser la fonction SOMME() pour calculer les totaux</span>
                 </div>
                 <div class="objective-item">
-                    <span class="objective-text">Utiliser les fonctions MAX() et MIN() pour identifier les extrêmes</span>
+                    <span class="objective-text">Utiliser les fonctions MAX() et MIN() pour identifier les
+                        extrêmes</span>
                 </div>
             </div>
         </div>
@@ -659,7 +718,7 @@
         const zoomInBtn = document.getElementById('zoomIn');
         const zoomOutBtn = document.getElementById('zoomOut');
         const zoomResetBtn = document.getElementById('zoomReset');
-        
+
         let currentZoom = 100;
         const minZoom = 50;
         const maxZoom = 200;
