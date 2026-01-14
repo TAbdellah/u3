@@ -239,6 +239,48 @@
                 margin-bottom: 30px;
             }
         }
+
+
+  .download-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #2e7d32;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .download-section p {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+
     </style>
 </head>
 
@@ -275,7 +317,8 @@
                     <ol>
                         <li>Créer un <strong>tableau organisé</strong> avec les produits achetés</li>
                         <li>Entrer le <strong>nom des produits</strong>, leur <strong>prix unitaire</strong> et les
-                            <strong>quantités</strong></li>
+                            <strong>quantités</strong>
+                        </li>
                         <li>Utiliser une <strong>formule de multiplication</strong> pour chaque produit (Quantité ×
                             Prix)</li>
                         <li>Ajouter une ligne pour le <strong>total des achats</strong> (somme des montants)</li>
@@ -283,6 +326,15 @@
                         </li>
                         <li>Mettre en forme le tableau : <strong>bordures, couleurs, titre</strong></li>
                     </ol>
+
+                    <div class="download-section">
+                        <p>📥 Téléchargez le fichier Excel de départ :</p>
+                        <a href="https://raw.githubusercontent.com/VOTREUSERNAME/VOTREREPOSITORY/main/TP2026/NOMDUFICHIER.xlsx"
+                            class="download-btn" download>
+                            ⬇️ Télécharger le fichier Excel
+                        </a>
+                    </div>
+
                 </div>
             </div>
 
