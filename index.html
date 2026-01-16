@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formation Tableau</title>
+    <title>TABLEUR - TP Excel</title>
     <style>
         * {
             margin: 0;
@@ -13,834 +13,504 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-        }
-
-        /* Header Section */
-        .header {
-            background: linear-gradient(135deg, #26a69a 0%, #1e8e7f 100%);
-            color: white;
+            background: linear-gradient(135deg, #f5f1ed 0%, #ebe5df 100%);
+            min-height: 100vh;
             padding: 60px 20px;
-            text-align: center;
         }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .header-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        .header-tags {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Main Content */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 60px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            font-weight: 700;
+            color: #6b5344;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .competence {
+            background: linear-gradient(135deg, #e8dccf 0%, #dfd3c5 100%);
+            border-left: 5px solid #b8956a;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .competence-title {
+            color: #8b6f56;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .competence-text {
+            color: #6b5344;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #9a8b7e;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .divider {
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(135deg, #b8956a 0%, #a08574 100%);
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            color: #8b7a6b;
+            max-width: 700px;
+            margin: 30px auto 0;
+            line-height: 1.6;
         }
 
         .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .section-title p {
-            color: #999;
-            font-size: 1em;
-        }
-
-        .icon-multi {
-            display: flex;
-            gap: 5px;
-            font-size: 1.2em;
-        }
-
-        .icon-multi span {
-            width: 12px;
-            height: 12px;
-            border-radius: 2px;
-            display: inline-block;
-        }
-
-        .icon-multi span:nth-child(1) { background: #ff6b6b; }
-        .icon-multi span:nth-child(2) { background: #ffd93d; }
-        .icon-multi span:nth-child(3) { background: #6bcf7f; }
-
-        /* Grid Layout */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .course-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #26a69a 0%, #1e8e7f 100%);
-            transition: left 0.3s ease;
-            z-index: -1;
-            border-radius: 12px;
-        }
-
-        .course-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(38, 166, 154, 0.2);
-        }
-
-        .course-card:hover::before {
-            left: 0;
-        }
-
-        .course-card:hover .course-number,
-        .course-card:hover .course-icon,
-        .course-card:hover h3,
-        .course-card:hover p,
-        .course-card:hover .course-link {
-            color: white;
-        }
-
-        .course-card:hover .duration {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .course-number {
-            width: 45px;
-            height: 45px;
-            background: #26a69a;
-            color: white;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.3em;
-            margin: 0 auto 20px;
-            transition: all 0.3s ease;
-        }
-
-        .course-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            display: block;
-            transition: all 0.3s ease;
-        }
-
-        .course-card h3 {
-            font-size: 1.2em;
-            color: #333;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .course-card p {
-            color: #888;
-            font-size: 0.95em;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .duration {
-            display: inline-block;
-            background: #f5f5f5;
-            color: #ff9800;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .course-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: #26a69a;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-
-        .course-link::after {
-            content: ' →';
-            margin-left: 5px;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            background: white;
-            padding: 50px 20px;
-            border-radius: 12px;
-            margin: 60px 0;
-        }
-
-        .cta-section h2 {
             font-size: 1.8em;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .cta-section p {
-            color: #888;
-            margin-bottom: 30px;
-            font-size: 1em;
-        }
-
-        .cta-btn {
-            background: #26a69a;
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 25px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            background: #1e8e7f;
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(38, 166, 154, 0.3);
-        }
-
-        /* Roadmap Section */
-        .roadmap-section {
-            background: white;
-            border-radius: 12px;
-            padding: 50px 30px;
-            margin: 60px 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .roadmap-header {
+            color: #6b5344;
+            margin: 70px 0 40px 0;
             text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .roadmap-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #26a69a 0%, #1e8e7f 100%);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 0.9em;
-        }
-
-        .roadmap-header h2 {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .roadmap-header p {
-            color: #888;
-            font-size: 1em;
-        }
-
-        /* Competence Info */
-        .competence-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-            padding: 30px;
-            background: #f9f9f9;
-            border-radius: 10px;
-        }
-
-        .info-item {
-            text-align: center;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .info-item:hover {
-            background: linear-gradient(135deg, #26a69a 0%, #1e8e7f 100%);
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        .info-item h4 {
-            font-size: 0.85em;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .info-item p {
-            font-size: 1.5em;
             font-weight: 600;
-        }
-
-        /* Timeline */
-        .timeline-wrapper {
-            margin-top: 50px;
-        }
-
-        .timeline {
             position: relative;
-            padding: 40px 0;
+            padding-bottom: 20px;
         }
 
-        .timeline::before {
+        .section-title::after {
             content: '';
             position: absolute;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(135deg, #26a69a 0%, #1e8e7f 100%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(135deg, #b8956a 0%, #a08574 100%);
         }
 
-        .timeline-item {
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
             margin-bottom: 60px;
-            position: relative;
         }
 
-        .timeline-item:nth-child(odd) {
-            margin-right: 51%;
-            text-align: right;
-            padding-right: 30px;
-        }
-
-        .timeline-item:nth-child(even) {
-            margin-left: 51%;
-            padding-left: 30px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 18px;
-            height: 18px;
-            background: white;
-            border: 3px solid #26a69a;
-            border-radius: 50%;
-            top: 0;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover .timeline-dot {
-            width: 26px;
-            height: 26px;
-            top: -4px;
-            border-color: #1e8e7f;
-            box-shadow: 0 0 20px rgba(38, 166, 154, 0.4);
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover .timeline-content {
-            box-shadow: 0 8px 25px rgba(38, 166, 154, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .timeline-content h3 {
-            color: #26a69a;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-
-        .timeline-content h4 {
-            color: #1e8e7f;
-            margin-bottom: 15px;
-            font-size: 0.95em;
-        }
-
-        .timeline-content ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .timeline-content li {
-            color: #666;
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
-
-        .timeline-content li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #26a69a;
-            font-weight: bold;
-        }
-
-        /* Progress Bars */
-        .progress-section {
-            margin: 40px 0;
-            padding: 30px;
-            background: #f9f9f9;
-            border-radius: 10px;
-        }
-
-        .progress-section h3 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-        }
-
-        .progress-item {
-            margin-bottom: 25px;
-        }
-
-        .progress-label {
+        .card {
+            background: #faf8f5;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(107, 83, 68, 0.08);
+            border: 1px solid #e8dfd7;
+            transition: all 0.4s ease;
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95em;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 10px;
+            flex-direction: column;
+            position: relative;
             overflow: hidden;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #26a69a 0%, #1e8e7f 100%);
-            border-radius: 10px;
-            transition: width 0.5s ease;
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #b8956a 0%, #a08574 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        /* Footer */
-        footer {
-            background: #f5f5f5;
-            padding: 30px 20px;
-            text-align: center;
-            color: #888;
-            margin-top: 40px;
-            border-top: 1px solid #e0e0e0;
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(107, 83, 68, 0.15);
         }
 
-        footer p {
-            margin: 10px 0;
+        .card:hover::before {
+            opacity: 1;
         }
 
-        .footer-links {
-            display: flex;
+        .card.coming-soon {
+            opacity: 0.8;
+            background: linear-gradient(135deg, #faf8f5 0%, #f5ede4 100%);
+        }
+
+        .card.coming-soon:hover {
+            transform: none;
+            box-shadow: 0 8px 25px rgba(107, 83, 68, 0.08);
+        }
+
+        .card-emoji {
+            font-size: 3em;
+            margin-bottom: 12px;
+        }
+
+        .card-number {
+            font-size: 0.9em;
+            color: #9a8b7e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #6b5344;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .card-subtitle {
+            font-size: 0.9em;
+            color: #b8956a;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e8dfd7;
+        }
+
+        .card-description {
+            color: #6b5344;
+            font-size: 0.95em;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .card-context {
+            background: #f5ede4;
+            padding: 12px;
+            border-radius: 6px;
+            color: #8b7a6b;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            border-left: 3px solid #b8956a;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
-            gap: 30px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #26a69a;
+            gap: 8px;
+            background: linear-gradient(135deg, #b8956a 0%, #a08574 100%);
+            color: #faf8f5;
+            padding: 12px 25px;
+            border-radius: 8px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95em;
+            box-shadow: 0 4px 15px rgba(160, 133, 116, 0.25);
+            align-self: flex-start;
         }
 
-        .footer-links a:hover {
-            color: #1e8e7f;
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(160, 133, 116, 0.35);
+            background: linear-gradient(135deg, #a08574 0%, #936e52 100%);
         }
 
-        @media (max-width: 1024px) {
-            .timeline::before {
-                left: 30px;
-            }
+        .download-btn:active {
+            transform: translateY(0);
+        }
 
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                margin-right: 0;
-                margin-left: 0;
-                padding-left: 80px;
-                text-align: left;
-            }
+        .download-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: linear-gradient(135deg, #d4c8bc 0%, #c8bfb3 100%);
+        }
 
-            .timeline-dot {
-                left: 30px;
-            }
+        .download-btn.disabled:hover {
+            transform: none;
+            box-shadow: 0 4px 15px rgba(160, 133, 116, 0.15);
+        }
 
-            .competence-info {
-                grid-template-columns: 1fr;
-            }
+        .coming-soon-badge {
+            display: inline-block;
+            background: #f5e6d3;
+            color: #b8956a;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #9a8b7e;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #e8dfd7;
+            font-size: 0.95em;
         }
 
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8em;
+            .hero h1 {
+                font-size: 2.8em;
             }
 
-            .courses-grid {
+            .cards-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
 
-            .section-title h2 {
+            .card {
+                padding: 25px;
+            }
+
+            .card-title {
+                font-size: 1.2em;
+            }
+
+            .section-title {
                 font-size: 1.5em;
-            }
-
-            .roadmap-section {
-                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <h1>
-            Tableur
-        </h1>
-        <p>Maîtrisez les feuilles de calcul en 12 séances pratiques</p>
-        <div class="header-tags">
-            <span class="tag">📋 12 Séances</span>
-            <span class="tag">⏱️ 12 Heures</span>
-        </div>
-    </div>
-
-    <!-- Main Content -->
     <div class="container">
-        <div class="section-title">
-            <h2>
-                <span class="icon-multi">
-                    <span></span><span></span><span></span>
-                </span>
-                Les 12 Séances
-            </h2>
-            <p>Un parcours progressif pour maîtriser le tableau de A à Z</p>
+        <div class="hero">
+            <h1>📊 TABLEUR</h1>
+            <div class="divider"></div>
+            <p class="subtitle">Compétence C12 - Produire un Document de Calcul</p>
+            <p class="description">
+                Maîtrisez Excel à travers des situations-problèmes réalistes et pratiques du quotidien
+            </p>
         </div>
 
-        <div class="courses-grid">
-            <!-- Course 1 -->
-            <a href="https://tabdellah.github.io/cours/" class="course-card">
-                <div class="course-number">1</div>
-                <span class="course-icon">📖</span>
-                <span class="duration">1h</span>
-                <h3>Introduction au Tableau</h3>
-                <p>Découvrez l'interface, les cellules, les lignes et colonnes. Apprenez à naviguer et saisir vos premières données.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 2 -->
-            <a href="https://tabdellah.github.io/u3/s1" class="course-card">
-                <div class="course-number">2</div>
-                <span class="course-icon">🛒</span>
-                <span class="duration">1h</span>
-                <h3>Les Courses pour une Tarte</h3>
-                <p>Créez votre première liste de courses avec calculs automatiques. Additionnez les prix et gérez votre budget.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 3 -->
-            <a href="https://tabdellah.github.io/u3/s2" class="course-card">
-                <div class="course-number">3</div>
-                <span class="course-icon">🏪</span>
-                <span class="duration">1h</span>
-                <h3>Gestion d'un Petit Commerce</h3>
-                <p>Apprenez à gérer un commerce de fruits et légumes : inventaire, prix, ventes et bénéfices.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 4 -->
-            <a href="https://tabdellah.github.io/u3/s3" class="course-card">
-                <div class="course-number">4</div>
-                <span class="course-icon">📈</span>
-                <span class="duration">1h</span>
-                <h3>Analyse de Rentabilité</h3>
-                <p>Calculez la rentabilité d'une vente d'œufs. Crédits, revenus, marges et seuil de rentabilité.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 5 -->
-            <a href="https://tabdellah.github.io/u3/s4" class="course-card">
-                <div class="course-number">5</div>
-                <span class="course-icon">🏆</span>
-                <span class="duration">1h</span>
-                <h3>Statistiques Sportives</h3>
-                <p>Analysez les statistiques de la Premier League. Classements, moyennes, graphiques.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 6 -->
-            <a href="https://tabdellah.github.io/u3/s5" class="course-card">
-                <div class="course-number">6</div>
-                <span class="course-icon">🧮</span>
-                <span class="duration">1h</span>
-                <h3>Formules Avancées</h3>
-                <p>Maîtrisez SI, SOMME, SI, RECHERCHEV et autres formules essentielles pour automatiser vos calculs.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 7 -->
-            <a href="https://tabdellah.github.io/u3/s6" class="course-card">
-                <div class="course-number">7</div>
-                <span class="course-icon">📊</span>
-                <span class="duration">1h</span>
-                <h3>Création de Graphiques</h3>
-                <p>Transformez vos données en graphiques visuels : barres, courbes, secteurs et histogrammes.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 8 -->
-            <a href="https://tabdellah.github.io/u3/s7" class="course-card">
-                <div class="course-number">8</div>
-                <span class="course-icon">⏰</span>
-                <span class="duration">1h</span>
-                <h3>Tableaux Croisés Dynamiques</h3>
-                <p>Résumez et analysez de grandes quantités de données avec les tableaux croisés dynamiques.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 9 -->
-            <a href="https://tabdellah.github.io/u3/s8" class="course-card">
-                <div class="course-number">9</div>
-                <span class="course-icon">✨</span>
-                <span class="duration">1h</span>
-                <h3>Mise en Forme Conditionnelle</h3>
-                <p>Appliquez des couleurs et styles automatiques selon les valeurs pour visualiser vos données.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 10 -->
-            <a href="https://tabdellah.github.io/u3/s9" class="course-card">
-                <div class="course-number">10</div>
-                <span class="course-icon">💰</span>
-                <span class="duration">1h</span>
-                <h3>Gestion de Budget Personnel</h3>
-                <p>Créez un budget mensuel complet avec suivi des dépenses, revenus et économies.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 11 -->
-            <a href="https://tabdellah.github.io/u3/s10" class="course-card">
-                <div class="course-number">11</div>
-                <span class="course-icon">🗄️</span>
-                <span class="duration">1h</span>
-                <h3>Base de Données Simple</h3>
-                <p>Organisez vos données comme une base : tri, filtres, validation et protection des cellules.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-
-            <!-- Course 12 -->
-            <a href="https://tabdellah.github.io/u3/s11" class="course-card">
-                <div class="course-number">12</div>
-                <span class="course-icon">📋</span>
-                <span class="duration">1h</span>
-                <h3>Projet Final</h3>
-                <p>Réalisez un projet complet intégrant toutes les compétences acquises durant la formation.</p>
-                <span class="course-link">Voir le cours</span>
-            </a>
-        </div>
-
-        <!-- ROADMAP SECTION -->
-        <div class="roadmap-section">
-            <div class="roadmap-header">
-                <div class="roadmap-badge">🎯 DOMAINE D'ACTION: TRAITEMENT</div>
-                <h2>C12 : Produire un document de calcul</h2>
-                <p>Feuille de route pédagogique complète - 12 heures de formation</p>
-            </div>
-
-            <!-- Competence Info -->
-            <div class="competence-info">
-                <div class="info-item">
-                    <h4>Unité</h4>
-                    <p>U3</p>
-                </div>
-                <div class="info-item">
-                    <h4>Compétence Ciblée</h4>
-                    <p>C12</p>
-                </div>
-                <div class="info-item">
-                    <h4>Volume Horaire</h4>
-                    <p>12 h</p>
-                </div>
-            </div>
-
-            <!-- Progress Section -->
-            <div class="progress-section">
-                <h3>📊 Progression de l'apprentissage</h3>
-                
-                <div class="progress-item">
-                    <div class="progress-label">
-                        <span>Théorie (Savoir)</span>
-                        <span>30%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 30%;"></div>
-                    </div>
-                </div>
-
-                <div class="progress-item">
-                    <div class="progress-label">
-                        <span>Pratique (Savoir-faire)</span>
-                        <span>50%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 50%;"></div>
-                    </div>
-                </div>
-
-                <div class="progress-item">
-                    <div class="progress-label">
-                        <span>Application (Savoir-être)</span>
-                        <span>20%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 20%;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Timeline -->
-            <div class="timeline-wrapper">
-                <div class="timeline">
-                    <!-- Phase 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Phase 1: SAVOIR</h3>
-                            <h4>Acquisitions Théoriques (3h 36min)</h4>
-                            <ul>
-                                <li>Tableur - Feuille de calcul</li>
-                                <li>Cellule / Types de données</li>
-                                <li>Adresse (relative et absolue)</li>
-                                <li>Formule et Fonction</li>
-                                <li>Graphe et représentation visuelle</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Phase 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Phase 2: SAVOIR-FAIRE</h3>
-                            <h4>Opérations sur cellules (6h)</h4>
-                            <ul>
-                                <li>Opérer sur une ou plusieurs cellules</li>
-                                <li>Saisir une formule</li>
-                                <li>Recopier une formule</li>
-                                <li>Insérer une fonction</li>
-                                <li>Différencier adresse relative et absolue</li>
-                                <li>Créer un graphe</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Phase 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Phase 3: SAVOIR-ÊTRE</h3>
-                            <h4>Interprétation des Résultats (2h 24min)</h4>
-                            <ul>
-                                <li>Analyser et interpréter les données</li>
-                                <li>Valider les résultats obtenus</li>
-                                <li>Documenter le travail réalisé</li>
-                                <li>Communiquer les analyses</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <div class="competence">
+            <div class="competence-title">🎯 Compétence Visée : C12</div>
+            <div class="competence-text">
+                Produire un Document de Calcul - Créer, organiser et formater un tableur pour résoudre des problèmes mathématiques et pratiques du quotidien.
             </div>
         </div>
 
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <h2>🚀 Prêt à commencer ?</h2>
-            <p>Cliquez sur n'importe quelle séance pour accéder au contenu du cours et commencer votre apprentissage.</p>
-            <button class="cta-btn">Commencer la Séance 1</button>
+        <!-- SECTION 1 : TP DISPONIBLES -->
+        <h2 class="section-title">📂 TP Disponibles</h2>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-emoji">🛒</div>
+                <div class="card-number">TP 01</div>
+                <div class="card-title">Les Courses pour une Tarte</div>
+                <div class="card-subtitle">Gestion des achats et vérification du budget</div>
+                <div class="card-context">
+                    <strong>Situation :</strong> Tu as 100 dirhams pour acheter des ingrédients à l'épicerie. Organise tes achats et vérifie si tu as assez d'argent.
+                </div>
+                <div class="card-description">
+                    Crée un tableau pour lister les produits, leurs prix et quantités. Calcule le total, vérifie ta limite budgétaire et détermine le reste à rendre.
+                </div>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP1.xlsx?raw=true" class="download-btn" download="TP1.xlsx">
+                    <span>⬇️</span> TP1.xlsx
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-emoji">🚀</div>
+                <div class="card-number">TP 02</div>
+                <div class="card-title">Lance ta Mini-Entreprise</div>
+                <div class="card-subtitle">Gestion d'un petit commerce au marché</div>
+                <div class="card-context">
+                    <strong>Situation :</strong> Tu es un élève entrepreneur ! Tu achètes des fruits et légumes au marché et les revends au souk le dimanche.
+                </div>
+                <div class="card-description">
+                    Organise tes achats et tes ventes. Calcule automatiquement tes bénéfices, identifie les produits les plus rentables et gère tes stocks.
+                </div>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP2.xlsx?raw=true" class="download-btn" download="TP2.xlsx">
+                    <span>⬇️</span> TP2.xlsx
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-emoji">🥚</div>
+                <div class="card-number">TP 03</div>
+                <div class="card-title">Vente d'Œufs</div>
+                <div class="card-subtitle">Analyse de rentabilité avec formules automatiques</div>
+                <div class="card-context">
+                    <strong>Situation :</strong> Tu élèves des poules et vends les œufs produits. Analyse ta rentabilité sur 4 semaines d'observation.
+                </div>
+                <div class="card-description">
+                    Saisies les données : œufs produits, cassés, vendus. Calcule les revenus, soustrais les dépenses hebdomadaires (transport, boîtes…) et évalue ton bénéfice total.
+                </div>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP3.xlsx?raw=true" class="download-btn" download="TP3.xlsx">
+                    <span>⬇️</span> TP3.xlsx
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-emoji">⚽</div>
+                <div class="card-number">TP 04</div>
+                <div class="card-title">Analyse des Statistiques de la Premier League</div>
+                <div class="card-subtitle">Traitement de données statistiques complexes</div>
+                <div class="card-context">
+                    <strong>Situation :</strong> Tu es analyste sportif et tu dois analyser les performances de 11 équipes de la Premier League anglaise.
+                </div>
+                <div class="card-description">
+                    Organise les victoires, nuls et défaites. Calcule automatiquement les points (V=3, N=1). Détermine le classement, identifie les équipes meilleures et pires performances.
+                </div>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP4.xlsx?raw=true" class="download-btn" download="TP4.xlsx">
+                    <span>⬇️</span> TP4.xlsx
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-emoji">🏃</div>
+                <div class="card-number">TP 05</div>
+                <div class="card-title">Analyse des Performances Sportives</div>
+                <div class="card-subtitle">Suivi personnel d'activités physiques</div>
+                <div class="card-context">
+                    <strong>Situation :</strong> Tu participes à un club sportif et tu as noté toutes tes activités (course, vélo, natation…) pendant une semaine.
+                </div>
+                <div class="card-description">
+                    Crée un tableau avec : date, type d'exercice, durée, distance, calories. Calcule les totaux, moyennes, identifie l'activité la plus efficace et prépare un bilan chiffré.
+                </div>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP5.xlsx?raw=true" class="download-btn" download="TP5.xlsx">
+                    <span>⬇️</span> TP5.xlsx
+                </a>
+            </div>
+
+            <div class="card coming-soon">
+                <div class="card-emoji">🔒</div>
+                <span class="coming-soon-badge">À bientôt</span>
+                <div class="card-number">TP 06</div>
+                <div class="card-title">Prochaine Aventure</div>
+                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
+                <div class="card-description">
+                    Découvrez bientôt le TP 06 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                </div>
+                <button class="download-btn disabled">
+                    <span>🔐</span> À venir...
+                </button>
+            </div>
         </div>
+
+        <!-- SECTION 2 : TP À BIENTÔT -->
+        <h2 class="section-title">⏳ À Bientôt...</h2>
+        <p style="text-align: center; color: #9a8b7e; margin-bottom: 40px; font-size: 1.05em;">
+            D'autres défis passionnants arrivent bientôt ! Reste à l'écoute pour découvrir les TP 07 à 12.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card coming-soon">
+                <div class="card-emoji">🔒</div>
+                <span class="coming-soon-badge">À bientôt</span>
+                <div class="card-number">TP 07</div>
+                <div class="card-title">Prochaine Aventure</div>
+                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
+                <div class="card-description">
+                    Découvrez bientôt le TP 07 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                </div>
+                <button class="download-btn disabled">
+                    <span>🔐</span> À venir...
+                </button>
+            </div>
+
+            <div class="card coming-soon">
+                <div class="card-emoji">🔒</div>
+                <span class="coming-soon-badge">À bientôt</span>
+                <div class="card-number">TP 08</div>
+                <div class="card-title">Prochaine Aventure</div>
+                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
+                <div class="card-description">
+                    Découvrez bientôt le TP 08 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                </div>
+                <button class="download-btn disabled">
+                    <span>🔐</span> À venir...
+                </button>
+            </div>
+
+            <div class="card coming-soon">
+                <div class="card-emoji">🔒</div>
+                <span class="coming-soon-badge">À bientôt</span>
+                <div class="card-number">TP 09</div>
+                <div class="card-title">Prochaine Aventure</div>
+                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
+                <div class="card-description">
+                    Découvrez bientôt le TP 09 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                </div>
+                <button class="download-btn disabled">
+                    <span>🔐</span> À venir...
+                </button>
+            </div>
+
+            <div class="card coming-soon">
+                <div class="card-emoji">🔒</div>
+                <span class="coming-soon-badge">À bientôt</span>
+                <div class="card-number">TP 10</div>
+                <div class="card-title">Prochaine Aventure</div>
+                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
+                <div class="card-description">
+                    Découvrez bientôt le TP 10 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                </div>
+                <button class="download-btn disabled">
+                    <span>🔐</span> À venir...
+                </button>
+            </div>
+
+            <div class="card coming-soon">
+                <div class="card-emoji">🔒</div>
+                <span class="coming-soon-badge">À bientôt</span>
+                <div class="card-number">TP 11</div>
+                <div class="card-title">Prochaine Aventure</div>
+                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
+                <div class="card-description">
+                    Découvrez bientôt le TP 11 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                </div>
+                <button class="download-btn disabled">
+                    <span>🔐</span> À venir...
+                </button>
+            </div>
+
+            <div class="card coming-soon">
+                <div class="card-emoji">🔒</div>
+                <span class="coming-soon-badge">À bientôt</span>
+                <div class="card-number">TP 12</div>
+                <div class="card-title">Prochaine Aventure</div>
+                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
+                <div class="card-description">
+                    Découvrez bientôt le TP 12 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                </div>
+                <button class="download-btn disabled">
+                    <span>🔐</span> À venir...
+                </button>
+            </div>
+        </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-content">
+        <strong>© 2025-2026 Tous droits réservés</strong><br>
+        Académie Régionale de l'Éducation et de la Formation – Région Souss Massa<br>
+        Direction Provinciale Inzegane Aït Melloul<br>
+        Collège Othmane Ibn Affane
+      </div>
+      <div class="footer-author">
+        Conception et réalisation : <strong>Abdellah TAHTOH</strong><br>
+        Fait avec <span class="footer-heart">❤</span> au service de l'éducation numérique
+      </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>Créé avec ❤️ pour l'apprentissage</p>
-        <div class="footer-links">
-            <a href="#">Tous les cours</a>
-            <a href="#">À propos</a>
-            <a href="#">Contact</a>
-        </div>
-    </footer>
+    </div>
 </body>
 </html>
