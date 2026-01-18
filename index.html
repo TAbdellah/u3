@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -205,6 +206,45 @@
             border-left: 3px solid #b8956a;
         }
 
+        .card-details {
+            background: #f5ede4;
+            padding: 15px;
+            border-radius: 6px;
+            color: #6b5344;
+            font-size: 0.9em;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            border-left: 3px solid #b8956a;
+        }
+
+        .card-details strong {
+            color: #8b6f56;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .objectives-list li {
+            color: #6b5344;
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .objectives-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #b8956a;
+            font-weight: bold;
+        }
+
         .download-btn {
             display: inline-flex;
             align-items: center;
@@ -256,6 +296,54 @@
             margin-bottom: 15px;
         }
 
+        .toggle-details {
+            background: none;
+            border: none;
+            color: #b8956a;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .toggle-details:hover {
+            color: #8b6f56;
+        }
+
+        .toggle-details::before {
+            content: '▶';
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-details[data-expanded="true"]::before {
+            transform: rotate(90deg);
+        }
+
+        .details-content {
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .details-content[data-visible="true"] {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+            }
+        }
+
         .footer {
             text-align: center;
             color: #9a8b7e;
@@ -289,6 +377,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="hero">
@@ -303,7 +392,8 @@
         <div class="competence">
             <div class="competence-title">🎯 Compétence Visée : C12</div>
             <div class="competence-text">
-                Produire un Document de Calcul - Créer, organiser et formater un tableur pour résoudre des problèmes mathématiques et pratiques du quotidien.
+                Produire un Document de Calcul - Créer, organiser et formater un tableur pour résoudre des problèmes
+                mathématiques et pratiques du quotidien.
             </div>
         </div>
 
@@ -311,98 +401,217 @@
         <h2 class="section-title">📂 TP Disponibles</h2>
 
         <div class="cards-grid">
+            <!-- TP 1 -->
             <div class="card">
-                <div class="card-emoji">🛒</div>
+                <div class="card-emoji">🥧</div>
                 <div class="card-number">TP 01</div>
                 <div class="card-title">Les Courses pour une Tarte</div>
                 <div class="card-subtitle">Gestion des achats et vérification du budget</div>
                 <div class="card-context">
-                    <strong>Situation :</strong> Tu as 100 dirhams pour acheter des ingrédients à l'épicerie. Organise tes achats et vérifie si tu as assez d'argent.
+                    <strong>Situation :</strong> Tu as 100 dirhams pour acheter des ingrédients à l'épicerie. Organise
+                    tes achats et vérifie si tu as assez d'argent.
                 </div>
-                <div class="card-description">
-                    Crée un tableau pour lister les produits, leurs prix et quantités. Calcule le total, vérifie ta limite budgétaire et détermine le reste à rendre.
+                <button class="toggle-details" onclick="toggleDetails(this)">Voir les détails</button>
+                <div class="details-content">
+                    <div class="card-details">
+                        <strong>Objectifs d'Apprentissage :</strong>
+                        <ul class="objectives-list">
+                            <li>Organiser les données dans une structure claire</li>
+                            <li>Écrire des formules de multiplication</li>
+                            <li>Calculer le montant de chaque produit</li>
+                            <li>Comparer avec le budget disponible</li>
+                            <li>Déterminer le reste à rendre</li>
+                        </ul>
+                        <strong style="margin-top: 10px;">Tâches à effectuer :</strong>
+                        <ul class="objectives-list">
+                            <li>Créer un tableau organisé avec les produits achetés</li>
+                            <li>Entrer le nom des produits, leur prix unitaire et quantités</li>
+                            <li>Utiliser une formule de multiplication pour chaque produit</li>
+                            <li>Ajouter une ligne pour le total des achats</li>
+                            <li>Calculer le reste (100 DH - total)</li>
+                            <li>Mettre en forme : bordures, couleurs, titre</li>
+                        </ul>
+                    </div>
                 </div>
-                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP1.xlsx?raw=true" class="download-btn" download="TP1.xlsx">
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP1.xlsx?raw=true"
+                    class="download-btn" download="TP1.xlsx">
                     <span>⬇️</span> TP1.xlsx
                 </a>
             </div>
 
+            <!-- TP 2 -->
             <div class="card">
                 <div class="card-emoji">🚀</div>
                 <div class="card-number">TP 02</div>
                 <div class="card-title">Lance ta Mini-Entreprise</div>
                 <div class="card-subtitle">Gestion d'un petit commerce au marché</div>
                 <div class="card-context">
-                    <strong>Situation :</strong> Tu es un élève entrepreneur ! Tu achètes des fruits et légumes au marché et les revends au souk le dimanche.
+                    <strong>Situation :</strong> Tu es un élève entrepreneur ! Tu achètes des fruits et légumes au
+                    marché et les revends au souk le dimanche.
                 </div>
-                <div class="card-description">
-                    Organise tes achats et tes ventes. Calcule automatiquement tes bénéfices, identifie les produits les plus rentables et gère tes stocks.
+                <button class="toggle-details" onclick="toggleDetails(this)">Voir les détails</button>
+                <div class="details-content">
+                    <div class="card-details">
+                        <strong>Formules à utiliser :</strong>
+                        <ul class="objectives-list">
+                            <li>Montant d'achat = Quantité × Prix d'achat</li>
+                            <li>Montant de vente = Quantité × Prix de vente</li>
+                            <li>Bénéfice = Montant de vente - Montant d'achat</li>
+                            <li>Capital investi = Somme du Montant d'achat</li>
+                            <li>Bénéfice brut = Somme du Bénéfice</li>
+                        </ul>
+                        <strong style="margin-top: 10px;">Questions à résoudre :</strong>
+                        <ul class="objectives-list">
+                            <li>Est-ce que mon projet est rentable ?</li>
+                            <li>Quel produit me donne le plus de bénéfice ?</li>
+                            <li>Quel produit me donne le moins de bénéfice ?</li>
+                        </ul>
+                    </div>
                 </div>
-                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP2.xlsx?raw=true" class="download-btn" download="TP2.xlsx">
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP2.xlsx?raw=true"
+                    class="download-btn" download="TP2.xlsx">
                     <span>⬇️</span> TP2.xlsx
                 </a>
             </div>
 
+            <!-- TP 3 -->
             <div class="card">
                 <div class="card-emoji">🥚</div>
                 <div class="card-number">TP 03</div>
                 <div class="card-title">Vente d'Œufs</div>
                 <div class="card-subtitle">Analyse de rentabilité avec formules automatiques</div>
                 <div class="card-context">
-                    <strong>Situation :</strong> Tu élèves des poules et vends les œufs produits. Analyse ta rentabilité sur 4 semaines d'observation.
+                    <strong>Situation :</strong> Tu élèves des poules et vends les œufs produits. Analyse ta rentabilité
+                    sur 4 semaines d'observation.
                 </div>
-                <div class="card-description">
-                    Saisies les données : œufs produits, cassés, vendus. Calcule les revenus, soustrais les dépenses hebdomadaires (transport, boîtes…) et évalue ton bénéfice total.
+                <button class="toggle-details" onclick="toggleDetails(this)">Voir les détails</button>
+                <div class="details-content">
+                    <div class="card-details">
+                        <strong>Règles de calcul :</strong>
+                        <ul class="objectives-list">
+                            <li>Œufs vendus = Œufs produits - Œufs cassés</li>
+                            <li>Profit brut = Œufs vendus × 2,00 MAD</li>
+                            <li>Profit net = Revenu brut - 10 MAD (dépenses/semaine)</li>
+                            <li>Calcule les totaux et utilise MAX/MIN</li>
+                        </ul>
+                        <strong style="margin-top: 10px;">Questions à résoudre :</strong>
+                        <ul class="objectives-list">
+                            <li>Calcule le bénéfice net total sur les 4 semaines</li>
+                            <li>Cette activité te permet-elle vraiment de gagner de l'argent ?</li>
+                            <li>Est-elle rentable ? Justifie avec les données</li>
+                        </ul>
+                    </div>
                 </div>
-                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP3.xlsx?raw=true" class="download-btn" download="TP3.xlsx">
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP3.xlsx?raw=true"
+                    class="download-btn" download="TP3.xlsx">
                     <span>⬇️</span> TP3.xlsx
                 </a>
             </div>
 
+            <!-- TP 4 -->
             <div class="card">
                 <div class="card-emoji">⚽</div>
                 <div class="card-number">TP 04</div>
                 <div class="card-title">Analyse des Statistiques de la Premier League</div>
                 <div class="card-subtitle">Traitement de données statistiques complexes</div>
                 <div class="card-context">
-                    <strong>Situation :</strong> Tu es analyste sportif et tu dois analyser les performances de 11 équipes de la Premier League anglaise.
+                    <strong>Situation :</strong> Tu es analyste sportif et tu dois analyser les performances de 11
+                    équipes de la Premier League anglaise.
                 </div>
-                <div class="card-description">
-                    Organise les victoires, nuls et défaites. Calcule automatiquement les points (V=3, N=1). Détermine le classement, identifie les équipes meilleures et pires performances.
+                <button class="toggle-details" onclick="toggleDetails(this)">Voir les détails</button>
+                <div class="details-content">
+                    <div class="card-details">
+                        <strong>Formules Excel :</strong>
+                        <ul class="objectives-list">
+                            <li>=SOMME() pour calculer les totaux</li>
+                            <li>=MAX() pour trouver le maximum de points</li>
+                            <li>=MIN() pour trouver le minimum de points</li>
+                            <li>=NB() pour compter le nombre d'équipes</li>
+                        </ul>
+                        <strong style="margin-top: 10px;">Questions à résoudre :</strong>
+                        <ul class="objectives-list">
+                            <li>Quel est le nombre total de victoires ?</li>
+                            <li>Combien de matchs nuls au total ?</li>
+                            <li>Quelle équipe a le max/min de points ?</li>
+                        </ul>
+                    </div>
                 </div>
-                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP4.xlsx?raw=true" class="download-btn" download="TP4.xlsx">
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP4.xlsx?raw=true"
+                    class="download-btn" download="TP4.xlsx">
                     <span>⬇️</span> TP4.xlsx
                 </a>
             </div>
 
+            <!-- TP 5 -->
             <div class="card">
                 <div class="card-emoji">🏃</div>
                 <div class="card-number">TP 05</div>
                 <div class="card-title">Analyse des Performances Sportives</div>
-                <div class="card-subtitle">Suivi personnel d'activités physiques</div>
+                <div class="card-subtitle">Suivi d'une activité sportive personnelle</div>
                 <div class="card-context">
-                    <strong>Situation :</strong> Tu participes à un club sportif et tu as noté toutes tes activités (course, vélo, natation…) pendant une semaine.
+                    <strong>Situation :</strong> Tu participes à un club sportif et tu as noté toutes tes activités
+                    (course, vélo, natation) pendant une semaine.
                 </div>
-                <div class="card-description">
-                    Crée un tableau avec : date, type d'exercice, durée, distance, calories. Calcule les totaux, moyennes, identifie l'activité la plus efficace et prépare un bilan chiffré.
+                <button class="toggle-details" onclick="toggleDetails(this)">Voir les détails</button>
+                <div class="details-content">
+                    <div class="card-details">
+                        <strong>Formules à appliquer :</strong>
+                        <ul class="objectives-list">
+                            <li>=SOMME() pour la durée totale</li>
+                            <li>=SOMME() pour la distance totale</li>
+                            <li>=SOMME() pour les calories totales</li>
+                            <li>=MOYENNE() pour le temps moyen</li>
+                            <li>=MAX() pour identifier le jour productif</li>
+                        </ul>
+                        <strong style="margin-top: 10px;">Questions à résoudre :</strong>
+                        <ul class="objectives-list">
+                            <li>Quel est le temps total d'exercice ?</li>
+                            <li>Combien de km au total parcourus ?</li>
+                            <li>Quel exercice a brûlé le plus de calories ?</li>
+                            <li>Quel est le temps moyen par jour ?</li>
+                        </ul>
+                    </div>
                 </div>
-                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP5.xlsx?raw=true" class="download-btn" download="TP5.xlsx">
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP5.xlsx?raw=true"
+                    class="download-btn" download="TP5.xlsx">
                     <span>⬇️</span> TP5.xlsx
                 </a>
             </div>
 
-            <div class="card coming-soon">
-                <div class="card-emoji">🔒</div>
-                <span class="coming-soon-badge">À bientôt</span>
+            <!-- TP 6 -->
+            <div class="card">
+                <div class="card-emoji">📚</div>
                 <div class="card-number">TP 06</div>
-                <div class="card-title">Prochaine Aventure</div>
-                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
-                <div class="card-description">
-                    Découvrez bientôt le TP 06 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                <div class="card-title">Analyser les Prix des Magazines</div>
+                <div class="card-subtitle">Gestion des réductions et analyse des prix</div>
+                <div class="card-context">
+                    <strong>Situation :</strong> Tu aides ton oncle qui tient un kiosque de journaux. Il fait une
+                    promotion : -20% sur les magazines. Analyse l'impact avec Excel.
                 </div>
-                <button class="download-btn disabled">
-                    <span>🔐</span> À venir...
-                </button>
+                <button class="toggle-details" onclick="toggleDetails(this)">Voir les détails</button>
+                <div class="details-content">
+                    <div class="card-details">
+                        <strong>Formules principales :</strong>
+                        <ul class="objectives-list">
+                            <li>=SOMME() pour les totaux</li>
+                            <li>=MOYENNE() pour les prix moyens</li>
+                            <li>=MAX() et =MIN() pour min/max</li>
+                            <li>=NBVAL() pour compter les magazines</li>
+                        </ul>
+                        <strong style="margin-top: 10px;">Analyse requise :</strong>
+                        <ul class="objectives-list">
+                            <li>Total des prix initiaux</li>
+                            <li>Total des réductions (20%)</li>
+                            <li>Total payé après réduction</li>
+                            <li>Prix moyen avant et après</li>
+                            <li>Magazines les plus/moins chers</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP6.xlsx?raw=true"
+                    class="download-btn" download="TP6.xlsx">
+                    <span>⬇️</span> TP6.xlsx
+                </a>
             </div>
         </div>
 
@@ -414,103 +623,121 @@
 
         <div class="cards-grid">
             <div class="card coming-soon">
-                <div class="card-emoji">🔒</div>
+                <div class="card-emoji">📋</div>
                 <span class="coming-soon-badge">À bientôt</span>
                 <div class="card-number">TP 07</div>
                 <div class="card-title">Prochaine Aventure</div>
                 <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
                 <div class="card-description">
-                    Découvrez bientôt le TP 07 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                    Découvrez bientôt le TP 07 avec de nouveaux défis et situations-problèmes pour approfondir votre
+                    maîtrise du tableur !
                 </div>
                 <button class="download-btn disabled">
-                    <span>🔐</span> À venir...
+                    <span>📝</span> À venir...
                 </button>
             </div>
 
             <div class="card coming-soon">
-                <div class="card-emoji">🔒</div>
+                <div class="card-emoji">📋</div>
                 <span class="coming-soon-badge">À bientôt</span>
                 <div class="card-number">TP 08</div>
                 <div class="card-title">Prochaine Aventure</div>
                 <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
                 <div class="card-description">
-                    Découvrez bientôt le TP 08 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                    Découvrez bientôt le TP 08 avec de nouveaux défis et situations-problèmes pour approfondir votre
+                    maîtrise du tableur !
                 </div>
                 <button class="download-btn disabled">
-                    <span>🔐</span> À venir...
+                    <span>📝</span> À venir...
                 </button>
             </div>
 
             <div class="card coming-soon">
-                <div class="card-emoji">🔒</div>
+                <div class="card-emoji">📋</div>
                 <span class="coming-soon-badge">À bientôt</span>
                 <div class="card-number">TP 09</div>
                 <div class="card-title">Prochaine Aventure</div>
                 <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
                 <div class="card-description">
-                    Découvrez bientôt le TP 09 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                    Découvrez bientôt le TP 09 avec de nouveaux défis et situations-problèmes pour approfondir votre
+                    maîtrise du tableur !
                 </div>
                 <button class="download-btn disabled">
-                    <span>🔐</span> À venir...
+                    <span>📝</span> À venir...
                 </button>
             </div>
 
             <div class="card coming-soon">
-                <div class="card-emoji">🔒</div>
+                <div class="card-emoji">📋</div>
                 <span class="coming-soon-badge">À bientôt</span>
                 <div class="card-number">TP 10</div>
                 <div class="card-title">Prochaine Aventure</div>
                 <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
                 <div class="card-description">
-                    Découvrez bientôt le TP 10 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                    Découvrez bientôt le TP 10 avec de nouveaux défis et situations-problèmes pour approfondir votre
+                    maîtrise du tableur !
                 </div>
                 <button class="download-btn disabled">
-                    <span>🔐</span> À venir...
+                    <span>📝</span> À venir...
                 </button>
             </div>
 
             <div class="card coming-soon">
-                <div class="card-emoji">🔒</div>
+                <div class="card-emoji">📋</div>
                 <span class="coming-soon-badge">À bientôt</span>
                 <div class="card-number">TP 11</div>
                 <div class="card-title">Prochaine Aventure</div>
                 <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
                 <div class="card-description">
-                    Découvrez bientôt le TP 11 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                    Découvrez bientôt le TP 11 avec de nouveaux défis et situations-problèmes pour approfondir votre
+                    maîtrise du tableur !
                 </div>
                 <button class="download-btn disabled">
-                    <span>🔐</span> À venir...
+                    <span>📝</span> À venir...
                 </button>
             </div>
 
             <div class="card coming-soon">
-                <div class="card-emoji">🔒</div>
+                <div class="card-emoji">📋</div>
                 <span class="coming-soon-badge">À bientôt</span>
                 <div class="card-number">TP 12</div>
                 <div class="card-title">Prochaine Aventure</div>
                 <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
                 <div class="card-description">
-                    Découvrez bientôt le TP 12 avec de nouveaux défis et situations-problèmes pour approfondir votre maîtrise du tableur !
+                    Découvrez bientôt le TP 12 avec de nouveaux défis et situations-problèmes pour approfondir votre
+                    maîtrise du tableur !
                 </div>
                 <button class="download-btn disabled">
-                    <span>🔐</span> À venir...
+                    <span>📝</span> À venir...
                 </button>
             </div>
         </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-      <div class="footer-content">
-        <strong>© 2025-2026 Tous droits réservés</strong><br>
-        Académie Régionale de l'Éducation et de la Formation – Région Souss Massa<br>
-        Direction Provinciale Inzegane Aït Melloul<br>
-        Collège Othmane Ibn Affane
-      </div>
-      <div class="footer-author">
-        Conception et réalisation : <strong>Abdellah TAHTOH</strong><br>
-        Fait avec <span class="footer-heart">❤</span> au service de l'éducation numérique
-      </div>
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-content">
+                <strong>© 2025-2026 Tous droits réservés</strong><br>
+                Académie Régionale de l'Éducation et de la Formation – Région Souss Massa<br>
+                Direction Provinciale Inzegane Aït Melloul<br>
+                Collège Othmane Ibn Affane
+            </div>
+            <div class="footer-author">
+                Conception et réalisation : <strong>Abdellah TAHTOH</strong><br>
+                Fait avec ❤ au service de l'éducation numérique
+            </div>
+        </div>
     </div>
-    </div>
+
+    <script>
+        function toggleDetails(button) {
+            const card = button.closest('.card');
+            const detailsContent = card.querySelector('.details-content');
+            const isExpanded = button.getAttribute('data-expanded') === 'true';
+            
+            button.setAttribute('data-expanded', !isExpanded);
+            detailsContent.setAttribute('data-visible', !isExpanded);
+        }
+    </script>
 </body>
+
 </html>
