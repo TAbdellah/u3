@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse des Prix de Magazines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a1a;
+            padding: 30px;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #9c27b0 0%, #ba68c8 100%);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.8em;
+            opacity: 0.95;
+        }
+
+        .competence {
+            background: #fff3cd;
+            border: 5px solid #ffc107;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 50px;
+            font-size: 2em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 40px;
+            margin-bottom: 50px;
+            border-radius: 12px;
+            border-left: 8px solid #9c27b0;
+        }
+
+        .section h2 {
+            color: #9c27b0;
+            margin-bottom: 35px;
+            font-size: 2.5em;
+            border-bottom: 4px solid #9c27b0;
+            padding-bottom: 20px;
+        }
+
+        .problem-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            border-top: 6px solid #9c27b0;
+            font-size: x-large;
+        }
+
+        .problem-card h3 {
+            color: #9c27b0;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        .problem-card p {
+            color: #333;
+            line-height: 2;
+            margin-bottom: 18px;
+            font-size: 1.2em;
+        }
+
+        .problem-card ul {
+            margin-left: 30px;
+            color: #333;
+            line-height: 2.2;
+        }
+
+        .problem-card li {
+            font-size: 1.2em;
+        }
+
+        .problem-question {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 6px solid #9c27b0;
+            margin-top: 30px;
+        }
+
+        .problem-question h3 {
+            color: #9c27b0;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .problem-question p {
+            color: #333;
+            line-height: 2.2;
+            font-weight: 500;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .consignes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            counter-reset: consigne-counter;
+        }
+
+        .consigne-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 6px solid #9c27b0;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .consigne-item:before {
+            content: counter(consigne-counter);
+            counter-increment: consigne-counter;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #9c27b0;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.5em;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .consigne-text {
+            color: #333;
+            font-weight: 500;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        .objectives {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .objective-item {
+            background: #f3e5f5;
+            padding: 20px 25px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 6px solid #9c27b0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .objective-item:before {
+            content: "✓";
+            color: #9c27b0;
+            font-weight: bold;
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+
+        .objective-text {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .rules-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .rules-column h3 {
+            color: #9c27b0;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #9c27b0;
+        }
+
+        .rule {
+            background: #f3e5f5;
+            padding: 20px;
+            margin: 18px 0;
+            border-radius: 8px;
+            border-left: 6px solid #9c27b0;
+        }
+
+        .rule-label {
+            font-weight: bold;
+            color: #6a1b9a;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .rule-formula {
+            background: #fff;
+            padding: 18px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            color: #333;
+            margin-top: 12px;
+            border: 2px solid #9c27b0;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .images-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .image-card {
+            border: 3px solid #9c27b0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .zoom-controls {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .zoom-button {
+            background: #9c27b0;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-button:hover {
+            background: #7b1fa2;
+            transform: scale(1.1);
+        }
+
+        .zoom-button:active {
+            transform: scale(0.95);
+        }
+
+        .zoom-display {
+            font-weight: bold;
+            color: #9c27b0;
+            font-size: 1.2em;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .zoom-reset {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-reset:hover {
+            background: #5a6268;
+        }
+
+        @media (max-width: 1400px) {
+            .problem-container,
+            .consignes-grid,
+            .rules-container,
+            .images-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .zoom-controls {
+                top: 10px;
+                right: 10px;
+                padding: 15px 20px;
+                gap: 10px;
+            }
+
+            .zoom-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+            }
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #2e7d32;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .download-section p {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .context-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 6px solid #9c27b0;
+            margin-bottom: 25px;
+        }
+
+        .context-box h4 {
+            color: #6a1b9a;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .context-box ul {
+            margin-left: 25px;
+            color: #333;
+            line-height: 2;
+        }
+
+        .context-box li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zoom-controls">
+        <button class="zoom-button" id="zoomOut" title="Diminuer (-)">−</button>
+        <span class="zoom-display" id="zoomLevel">100%</span>
+        <button class="zoom-button" id="zoomIn" title="Augmenter (+)">+</button>
+        <button class="zoom-reset" id="zoomReset" title="Réinitialiser">Réinitialiser</button>
+    </div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Le Kiosque de Ton Oncle</h1>
+            <p>📚 Analyser les Prix des Magazines avec Excel</p>
+        </div>
+
+        <!-- COMPETENCE -->
+        <div class="competence">
+            🎯 COMPÉTENCE C12: Produire un document de calculs
+        </div>
+
+        <!-- SITUATION PROBLEME -->
+        <div class="section">
+            <h2>🎯 La Situation</h2>
+
+            <div class="problem-container">
+                <div class="problem-card">
+                    <p>Tu aides ton oncle qui tient un petit kiosque de journaux dans ton quartier.</p>
+                    <p>Pendant les vacances scolaires, il décide de faire une promotion : <strong >–20 % sur certains magazines</strong> pour attirer plus de clients.</p>
+                    <p style="font-weight: bold;  color: #6a1b9a;">Avant de commencer la promotion, tu écris dans un tableau :</p>
+                    <ul >
+                        <li>le numéro du magazine</li>
+                        <li>le nom du magazine</li>
+                        <li>le prix initial sans réduction</li>
+                        <li>le montant de la réduction (20%)</li>
+                        <li>le prix après réduction</li>
+                    </ul>
+                </div>
+
+                <div class="context-box">
+                    <h4 style="font-size: 1.5em;">📌 Pourquoi c'est important ?</h4>
+                    <p style="font-size: 1.3em; line-height: 2;">Ton oncle te demande d'analyser les résultats de cette promotion avec Excel pour :</p>
+                    <ul style="font-size: 1.3em;">
+                        <li>connaître le total des prix</li>
+                        <li>comparer avant et après réduction</li>
+                        <li>identifier les magazines les plus chers et les moins chers</li>
+                        <li>avoir une idée claire du prix moyen des magazines</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-question">
+                <h3>❓ Les Questions à Résoudre</h3>
+                <p style="font-size: 1.3em;">1. Quel est le montant total des prix initiaux des magazines ?</p>
+                <p style="font-size: 1.3em;">2. Quel est le montant total des réductions accordées ?</p>
+                <p style="font-size: 1.3em;">3. Quel est le montant total payé par les clients après réduction ?</p>
+                <p style="font-size: 1.3em;">4. Quel magazine avait le prix initial le plus élevé ?</p>
+                <p style="font-size: 1.3em;">5. Quel est le prix moyen initial des magazines ?</p>
+                <p style="font-size: 1.3em;">6. Quel est le prix moyen après réduction ?</p>
+            </div>
+        </div>
+
+        <!-- CONSIGNES DE TRAVAIL -->
+        <div class="section">
+            <h2>✏️ Consignes de Travail</h2>
+            <div class="consignes-grid">
+                <div class="consigne-item">
+                    <span class="consigne-text">Utiliser le tableau des magazines (comme dans l'image)</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Appliquer les formules Excel pour calculer les <strong>totaux</strong></span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Appliquer les formules Excel pour calculer les <strong>moyennes</strong></span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Appliquer les formules Excel pour trouver le <strong>minimum et le maximum</strong></span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Présenter tous les résultats dans un <strong>tableau récapitulatif</strong></span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Mettre des <strong>couleurs</strong> pour rendre le document clair et agréable à lire</span>
+                </div>
+            </div>
+            <div class="download-section">
+                <p>Clique ici pour télécharger le fichier Excel avec les données</p>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP6.xlsx?raw=true"
+                    class="download-btn" download="Magazines_Reduction.xlsx">
+                    ⬇️ Télécharger le fichier Excel
+                </a>
+            </div>
+        </div>
+
+        <!-- TABLEAU DE DONNEES -->
+        <div class="section">
+            <h2>📊 Le Tableau des Magazines</h2>
+            <p style="color: #333; margin-bottom: 30px; font-size: 1.2em;">Voici les deux images du tableau des magazines. Choisis celle dans ta langue :</p>
+
+            <!-- IMAGES -->
+            <div class="images-container">
+                <div class="image-card">
+                    <img src="https://i.imgur.com/EzL0i4d.png" alt="Tableau des magazines avec réduction - Version Française">
+                </div>
+                <div class="image-card">
+                    <img src="https://i.imgur.com/fxd689I.png" alt="Tableau des magazines avec réduction - Version Arabe">
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMULES -->
+        <div class="section">
+            <h2>📋 Les Formules à Utiliser</h2>
+            <div class="rules-container">
+                <div class="rules-column">
+                    <h3>📊 Formules Principales</h3>
+
+                    <div class="rule">
+                        <div class="rule-label">Total des prix initiaux</div>
+                        <div class="rule-formula">=SOMME(C3:C10)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Total des réductions</div>
+                        <div class="rule-formula">=SOMME(D3:D10)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Total après réduction</div>
+                        <div class="rule-formula">=SOMME(E3:E10)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Prix moyen initial</div>
+                        <div class="rule-formula">=MOYENNE(C3:C10)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Prix moyen après réduction</div>
+                        <div class="rule-formula">=MOYENNE(E3:E10)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Prix initial le plus bas</div>
+                        <div class="rule-formula">=MIN(C3:C10)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Prix initial le plus élevé</div>
+                        <div class="rule-formula">=MAX(C3:C10)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Nombre total de magazines</div>
+                        <div class="rule-formula">=NBVAL(B3:B10)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPETENCE DETAILS -->
+        <div class="section">
+            <h2>📖 Ce Que Tu Vas Apprendre</h2>
+            <div class="problem-card">
+                <h3 style="border: none; margin-bottom: 20px;">C12: Faire des calculs dans un tableur</h3>
+                <p style="color: #333; margin-bottom: 20px;">
+                    Avec ce projet, tu vas apprendre à :
+                </p>
+                <ul style="margin-top: 20px; margin-left: 30px; color: #333; line-height: 2.2;">
+                    <li>Créer un tableau bien organisé dans Excel</li>
+                    <li>Utiliser les formules SOMME(), MOYENNE(), MAX() et MIN()</li>
+                    <li>Comprendre comment les réductions changent les prix</li>
+                    <li>Analyser des données et trouver des informations importantes</li>
+                    <li>Présenter tes résultats de façon claire et professionnelle</li>
+                    <li>Utiliser les couleurs pour rendre un document agréable à lire</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- OBJECTIFS -->
+        <div class="section">
+            <h2>🎯 Tes Objectifs</h2>
+            <div class="objectives">
+                <div class="objective-item">
+                    <span class="objective-text">Copier correctement tous les prix dans le tableau</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Utiliser les formules pour calculer les totaux et les moyennes</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Trouver le magazine le plus cher et le moins cher</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Faire un tableau récapitulatif avec toutes les réponses</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Utiliser les couleurs pour rendre le document beau et lisible</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const zoomDisplay = document.getElementById('zoomLevel');
+        const zoomInBtn = document.getElementById('zoomIn');
+        const zoomOutBtn = document.getElementById('zoomOut');
+        const zoomResetBtn = document.getElementById('zoomReset');
+
+        let currentZoom = 100;
+        const minZoom = 50;
+        const maxZoom = 200;
+        const zoomStep = 10;
+
+        function updateZoom() {
+            const zoomValue = currentZoom / 100;
+            container.style.transform = `scale(${zoomValue})`;
+            container.style.transformOrigin = 'top center';
+            zoomDisplay.textContent = `${currentZoom}%`;
+        }
+
+        zoomInBtn.addEventListener('click', () => {
+            if (currentZoom < maxZoom) {
+                currentZoom += zoomStep;
+                updateZoom();
+            }
+        });
+
+        zoomOutBtn.addEventListener('click', () => {
+            if (currentZoom > minZoom) {
+                currentZoom -= zoomStep;
+                updateZoom();
+            }
+        });
+
+        zoomResetBtn.addEventListener('click', () => {
+            currentZoom = 100;
+            updateZoom();
+        });
+    </script>
+</body>
+
+</html>
