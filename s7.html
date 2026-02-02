@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission 2030 - Consommation d'Électricité</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f3c1a 0%, #1a1a1a 100%);
+            padding: 30px;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 60px;
+            text-align: center;
+            border-radius: 18px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.8em;
+            opacity: 0.98;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+        }
+
+        .competence {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe9b6 100%);
+            border: none;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 50px;
+            font-size: 1.8em;
+            box-shadow: 0 5px 20px rgba(255, 193, 7, 0.2);
+            border-left: 8px solid #ffc107;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section {
+            background: linear-gradient(to bottom, #f8f9fa 0%, #f0f5f1 100%);
+            padding: 45px;
+            margin-bottom: 50px;
+            border-radius: 15px;
+            border-left: 8px solid #27ae60;
+            animation: fadeIn 0.8s ease-out;
+            box-shadow: 0 3px 15px rgba(39, 174, 96, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.12);
+        }
+
+        .section h2 {
+            color: #27ae60;
+            margin-bottom: 35px;
+            font-size: 2.5em;
+            border-bottom: 4px solid #27ae60;
+            padding-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .problem-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            border-top: 6px solid #27ae60;
+            font-size: x-large;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.15);
+        }
+
+        .problem-card h3 {
+            color: #27ae60;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .problem-card p {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 18px;
+            font-size: 1.1em;
+        }
+
+        .problem-card ul {
+            margin-left: 30px;
+            color: #333;
+            line-height: 2;
+        }
+
+        .problem-card li {
+            font-size: 1.1em;
+        }
+
+        .context-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 6px solid #27ae60;
+            box-shadow: 0 3px 15px rgba(39, 174, 96, 0.1);
+            animation: fadeIn 0.8s ease-out 0.4s both;
+            transition: all 0.3s ease;
+        }
+
+        .context-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.15);
+        }
+
+        .context-box h4 {
+            color: #155724;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 1.5em;
+        }
+
+        .context-box p,
+        .context-box ul {
+            color: #155724;
+        }
+
+        .problem-question {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 6px solid #27ae60;
+            margin-top: 30px;
+        }
+
+        .problem-question h3 {
+            color: #27ae60;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .problem-question p {
+            color: #333;
+            line-height: 2.2;
+            font-weight: 500;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .consignes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            counter-reset: consigne-counter;
+        }
+
+        .consigne-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 6px solid #27ae60;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .consigne-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.1);
+        }
+
+        .consigne-item:before {
+            content: counter(consigne-counter);
+            counter-increment: consigne-counter;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.5em;
+            flex-shrink: 0;
+            margin-top: 5px;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+        .consigne-text {
+            color: #333;
+            font-weight: 500;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 45px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+            border: 2px solid #27ae60;
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.2);
+            animation: fadeIn 0.8s ease-out 0.5s both;
+        }
+
+        .download-section p {
+            color: #155724;
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.6);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .objectives {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .objective-item {
+            background: linear-gradient(135deg, #d4edda 0%, #f0f8f5 100%);
+            padding: 25px 30px;
+            margin: 15px 0;
+            border-radius: 12px;
+            border-left: 6px solid #27ae60;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 10px rgba(39, 174, 96, 0.1);
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .objective-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.15);
+        }
+
+        .objective-item:before {
+            content: "✓";
+            color: white;
+            font-weight: bold;
+            font-size: 1.8em;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(39, 174, 96, 0.3);
+        }
+
+        .objective-text {
+            color: #155724;
+            font-size: 1.1em;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .rules-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .rules-column h3 {
+            color: #27ae60;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #27ae60;
+            padding-bottom: 15px;
+        }
+
+        .rule {
+            background: linear-gradient(135deg, #f0f8f5 0%, #e8f5e9 100%);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #27ae60;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(39, 174, 96, 0.08);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .rule:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.15);
+        }
+
+        .rule-label {
+            color: #27ae60;
+            font-weight: 700;
+            font-size: 1.15em;
+            margin-bottom: 12px;
+        }
+
+        .rule-formula {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-weight: bold;
+            border-left: 4px solid #27ae60;
+            font-size: 1em;
+        }
+
+        .images-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .image-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out;
+            border: 2px solid transparent;
+        }
+
+        .image-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(39, 174, 96, 0.2);
+            border-color: #27ae60;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .image-card h3 {
+            color: #27ae60;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1024px) {
+            .rules-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .zoom-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 18px 22px;
+            border-radius: 15px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+            box-shadow: 0 6px 25px rgba(39, 174, 96, 0.4);
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .zoom-btn {
+            background: white;
+            color: #27ae60;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .zoom-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .zoom-btn:active {
+            transform: scale(0.98);
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            min-width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zoom-controls">
+        <button class="zoom-btn" id="zoomOut">−</button>
+        <span class="zoom-level">
+            <span id="zoomLevel">100%</span>
+        </span>
+        <button class="zoom-btn" id="zoomIn">+</button>
+        <button class="zoom-btn" id="zoomReset">Réinitialiser</button>
+    </div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>⚡ Vision stratégique Maroc 2030 : <br>Consommation d'Électricité</h1>
+            <p>Aide ta famille à économiser l'électricité</p>
+        </div>
+
+        <!-- COMPETENCE -->
+        <div class="competence">
+            🎯 COMPÉTENCE C12: Produire un document de calculs
+        </div>
+
+        <!-- SITUATION PROBLEME -->
+        <div class="section">
+            <h2>🎯 Situation problème </h2>
+
+            <div class="problem-container">
+                <div class="problem-card">
+                    <p>Dans le cadre de la <strong>Vision stratégique Maroc 2030</strong>, le Maroc encourage les
+                        citoyens à réduire la consommation d'énergie et à utiliser l'électricité de manière responsable.
+                    </p>
+                    <p>Une famille marocaine souhaite connaître sa consommation quotidienne et mensuelle d'électricité
+                        pour participer à cet effort national.</p>
+                    <p style="font-weight: bold; color: #27ae60;">Elle décide d'utiliser un tableur pour :</p>
+                    <ul>
+                        <li>calculer la consommation de ses appareils</li>
+                        <li>connaître le coût réel de l'électricité</li>
+                        <li>identifier les appareils qui consomment le plus</li>
+                        <li>trouver des solutions pour réduire sa facture</li>
+                    </ul>
+                </div>
+
+                <div class="context-box">
+                    <h4 style="font-size: 1.5em;">📌 Pourquoi c'est important ?</h4>
+                    <p style="font-size: 1.3em; line-height: 2;">Cette étude permettra à la famille de :</p>
+                    <ul style="font-size: 1.3em;">
+                        <li>Connaître sa consommation d'électricité jour après jour</li>
+                        <li>Comprendre le coût réel de chaque appareil</li>
+                        <li>Repérer les gaspillages d'énergie</li>
+                        <li>Réduire sa facture et contribuer à Maroc 2030</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-question">
+                <h3>❓ Ta Mission</h3>
+                <p style="font-size: 1.3em;">Tu dois utiliser un tableur pour analyser la consommation d'électricité
+                    d'une maison :</p>
+                <p style="font-size: 1.3em;">1. Calculer la consommation quotidienne de chaque appareil</p>
+                <p style="font-size: 1.3em;">2. Calculer le coût de l'électricité</p>
+                <p style="font-size: 1.3em;">3. Déterminer la consommation et le coût mensuels</p>
+                <p style="font-size: 1.3em;">4. Identifier l'appareil qui consomme le plus</p>
+                <p style="font-size: 1.3em;">5. Proposer une solution simple pour réduire la facture d'électricité</p>
+            </div>
+        </div>
+
+        <!-- CONSIGNES DE TRAVAIL -->
+        <div class="section">
+            <h2>✏️ Consignes de Travail</h2>
+            <div class="consignes-grid">
+                <div class="consigne-item">
+                    <span class="consigne-text">Créer un tableau avec tous les appareils électriques de la maison</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Utiliser les formules Excel pour calculer la <strong>consommation
+                            quotidienne</strong> de chaque appareil</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Appliquer les formules pour calculer le <strong>coût</strong> en
+                        DH</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Calculer les <strong>consommations mensuelles</strong> et les
+                        <strong>coûts mensuels</strong></span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Créer une <strong>synthèse</strong> avec les totaux, moyennes, minimum
+                        et maximum</span>
+                </div>
+                <div class="consigne-item">
+                    <span class="consigne-text">Utiliser des <strong>couleurs</strong> et une <strong>mise en forme
+                            professionnelle</strong> du document</span>
+                </div>
+            </div>
+            <div class="download-section">
+                <p>Clique ici pour télécharger le fichier Excel avec les données</p>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP7.xlsx?raw=true"
+                    class="download-btn" download="Mission_2030_Electricite.xlsx">
+                    ⬇️ Télécharger le fichier Excel
+                </a>
+            </div>
+        </div>
+
+        <!-- TABLEAU DE DONNEES -->
+        <div class="section">
+            <h2>📊 Les Tableaux des Appareils Électriques</h2>
+            <p style="color: #333; margin-bottom: 30px; font-size: 1.2em;">Voici les deux images du tableau des
+                appareils. Choisis celle dans ta langue :</p>
+
+            <!-- IMAGES -->
+            <div class="images-container">
+                <div class="image-card">
+                    <h3>🇫🇷 Version Française</h3>
+                    <img src="https://i.imgur.com/6dsNnO7.png"
+                        alt="Tableau des appareils électriques - Version Française">
+                </div>
+                <div class="image-card">
+                    <h3>🇸🇦 Version Arabe</h3>
+                    <img src="https://i.imgur.com/Fj3nwis.png" alt="Tableau des appareils électriques - Version Arabe">
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMULES ET REGLES -->
+        <div class="section">
+            <h2>📋 Les Formules et Règles de Calcul</h2>
+            <div class="rules-container">
+                <div class="rules-column">
+                    <h3>📊 Formules de Calcul</h3>
+
+                    <div class="rule">
+                        <div class="rule-label">Consommation (kWh)</div>
+                        <div class="rule-formula">= (Nb appareils × Puissance × Heures) ÷ 1000</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Coût (DH)</div>
+                        <div class="rule-formula">= Consommation × 0,9 DH</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Consommation mensuelle</div>
+                        <div class="rule-formula">= Consommation totale × 30</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Coût mensuel</div>
+                        <div class="rule-formula">= Coût total × 30</div>
+                    </div>
+                </div>
+
+                <div class="rules-column">
+                    <h3>📈 Synthèse et Analyses</h3>
+
+                    <div class="rule">
+                        <div class="rule-label">Consommation totale/jour</div>
+                        <div class="rule-formula">=SOMME(consommations)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Consommation moyenne</div>
+                        <div class="rule-formula">=MOYENNE(consommations)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Consommation maximale</div>
+                        <div class="rule-formula">=MAX(consommations)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Consommation minimale</div>
+                        <div class="rule-formula">=MIN(consommations)</div>
+                    </div>
+
+                    <div class="rule">
+                        <div class="rule-label">Coût total/jour</div>
+                        <div class="rule-formula">=SOMME(coûts)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPETENCE DETAILS -->
+        <div class="section">
+            <h2>📖 Ce Que Tu Vas Apprendre</h2>
+            <div class="problem-card">
+                <h3 style="border: none; margin-bottom: 20px;">C12: Produire un document de calculs</h3>
+                <p style="color: #333; margin-bottom: 20px;">
+                    Avec ce projet, tu vas apprendre à :
+                </p>
+                <ul style="margin-top: 20px; margin-left: 30px; color: #333; line-height: 2.2;">
+                    <li>Organiser les données dans un tableau Excel clair et structuré</li>
+                    <li>Utiliser les formules SOMME(), MOYENNE(), MAX(), MIN()</li>
+                    <li>Comprendre les concepts de puissance, consommation et coût énergétique</li>
+                    <li>Analyser des données réelles pour prendre des décisions</li>
+                    <li>Créer des synthèses et des visualisations de données</li>
+                    <li>Mettre en forme un document professionnel avec couleurs et styles</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- OBJECTIFS -->
+        <div class="section">
+            <h2>🎯 Tes Objectifs</h2>
+            <div class="objectives">
+                <div class="objective-item">
+                    <span class="objective-text">Identifier tous les appareils électriques et noter leurs
+                        caractéristiques</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Maîtriser les formules de calcul de consommation et de coût</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Créer une synthèse complète avec tous les calculs nécessaires</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Identifier l'appareil le plus énergivore et proposer une
+                        solution</span>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-text">Présenter un document clair, bien organisé et visuellement
+                        attrayant</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const zoomDisplay = document.getElementById('zoomLevel');
+        const zoomInBtn = document.getElementById('zoomIn');
+        const zoomOutBtn = document.getElementById('zoomOut');
+        const zoomResetBtn = document.getElementById('zoomReset');
+
+        let currentZoom = 100;
+        const minZoom = 50;
+        const maxZoom = 200;
+        const zoomStep = 10;
+
+        function updateZoom() {
+            const zoomValue = currentZoom / 100;
+            container.style.transform = `scale(${zoomValue})`;
+            container.style.transformOrigin = 'top center';
+            zoomDisplay.textContent = `${currentZoom}%`;
+        }
+
+        zoomInBtn.addEventListener('click', () => {
+            if (currentZoom < maxZoom) {
+                currentZoom += zoomStep;
+                updateZoom();
+            }
+        });
+
+        zoomOutBtn.addEventListener('click', () => {
+            if (currentZoom > minZoom) {
+                currentZoom -= zoomStep;
+                updateZoom();
+            }
+        });
+
+        zoomResetBtn.addEventListener('click', () => {
+            currentZoom = 100;
+            updateZoom();
+        });
+    </script>
+</body>
+
+</html>
