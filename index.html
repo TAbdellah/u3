@@ -338,6 +338,7 @@
                 opacity: 0;
                 max-height: 0;
             }
+
             to {
                 opacity: 1;
                 max-height: 500px;
@@ -615,27 +616,46 @@
             </div>
         </div>
 
-        <!-- SECTION 2 : TP À BIENTÔT -->
-        <h2 class="section-title">⏳ À Bientôt...</h2>
-        <p style="text-align: center; color: #9a8b7e; margin-bottom: 40px; font-size: 1.05em;">
-            D'autres défis passionnants arrivent bientôt ! Reste à l'écoute pour découvrir les TP 07 à 12.
-        </p>
+
 
         <div class="cards-grid">
-            <div class="card coming-soon">
-                <div class="card-emoji">📋</div>
-                <span class="coming-soon-badge">À bientôt</span>
+            <div class="card">
+                <div class="card-emoji">🔌</div>
                 <div class="card-number">TP 07</div>
-                <div class="card-title">Prochaine Aventure</div>
-                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
-                <div class="card-description">
-                    Découvrez bientôt le TP 07 avec de nouveaux défis et situations-problèmes pour approfondir votre
-                    maîtrise du tableur !
+                <div class="card-title">Analyse de Consommation d'Électricité</div>
+                <div class="card-subtitle">Mission 2030 : Efficacité énergétique</div>
+                <div class="card-context">
+                    <strong>Situation :</strong> Aide une famille marocaine à analyser sa consommation d'électricité
+                    quotidienne et mensuelle dans le cadre de la Vision Maroc 2030.
                 </div>
-                <button class="download-btn disabled">
-                    <span>📝</span> À venir...
-                </button>
+                <button class="toggle-details" onclick="toggleDetails(this)">Voir les détails</button>
+                <div class="details-content">
+                    <div class="card-details">
+                        <strong>Formules à appliquer :</strong>
+                        <ul class="objectives-list">
+                            <li>=SOMME() pour la consommation totale</li>
+                            <li>=MOYENNE() pour la consommation moyenne</li>
+                            <li>=MAX() pour identifier l'appareil le plus énergivore</li>
+                            <li>=MIN() pour l'appareil le moins consommateur</li>
+                            <li>Formules de calcul : Consommation = (Nb × Puissance × Heures) ÷ 1000</li>
+                        </ul>
+                        <strong style="margin-top: 10px;">Questions à résoudre :</strong>
+                        <ul class="objectives-list">
+                            <li>Quel est le coût total d'électricité par jour ?</li>
+                            <li>Quel est le coût mensuel estimé ?</li>
+                            <li>Quel appareil consomme le plus d'électricité ?</li>
+                            <li>Quelle est la consommation moyenne par appareil ?</li>
+                            <li>Comment réduire la facture d'électricité ?</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP7.xlsx?raw=true"
+                    class="download-btn" download="TP7.xlsx">
+                    <span>⬇️</span> TP7.xlsx
+                </a>
             </div>
+
+
 
             <div class="card coming-soon">
                 <div class="card-emoji">📋</div>
@@ -733,7 +753,7 @@
             const card = button.closest('.card');
             const detailsContent = card.querySelector('.details-content');
             const isExpanded = button.getAttribute('data-expanded') === 'true';
-            
+
             button.setAttribute('data-expanded', !isExpanded);
             detailsContent.setAttribute('data-visible', !isExpanded);
         }
