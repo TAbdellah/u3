@@ -657,19 +657,40 @@
 
 
 
-            <div class="card coming-soon">
-                <div class="card-emoji">📋</div>
-                <span class="coming-soon-badge">À bientôt</span>
+ <div class="card">
+                <div class="card-emoji">🚦</div>
                 <div class="card-number">TP 08</div>
-                <div class="card-title">Prochaine Aventure</div>
-                <div class="card-subtitle">Nouvelles compétences Excel avancées</div>
-                <div class="card-description">
-                    Découvrez bientôt le TP 08 avec de nouveaux défis et situations-problèmes pour approfondir votre
-                    maîtrise du tableur !
+                <div class="card-title">EXERCICE – Contrôle de Vitesse sur la Route</div>
+                <div class="card-subtitle">Fonction SI</div>
+                <div class="card-context">
+                    <strong>Situation :</strong> Aide la police de la route à analyser les données de vitesse des véhicules pour identifier les infractions et calculer les amendes.
                 </div>
-                <button class="download-btn disabled">
-                    <span>📝</span> À venir...
-                </button>
+                <button class="toggle-details" onclick="toggleDetails(this)">Voir les détails</button>
+                <div class="details-content">
+                    <div class="card-details">
+                        <strong>Formules à appliquer :</strong>
+                        <ul class="objectives-list">
+                            <li>État (SI)</li>
+                            <li>Excès (km/h) (SI)</li>
+                            <li>Retrait permis ?</li>
+                            <li>Vitesse maximum relevée</li>
+                            <li>Vitesse minimum relevée</li>
+                            <li>Vitesse moyenne</li>
+                            <li>Nb de véhicules contrôlés</li>
+                        </ul>
+                        <strong style="margin-top: 10px;">Questions à résoudre :</strong>
+                        <ul class="objectives-list">
+                            <li>-Déterminer si chaque véhicule est en infraction ou non à l’aide de la fonction SI.</li>
+                            <li>-Calculer l’excès de vitesse pour les véhicules en infraction.</li>
+                            <li>-Indiquer si le permis doit être retiré lorsque l’excès dépasse 40 km/h.</li>
+                            <li>-Extraire des indicateurs globaux (vitesse maximale, minimale, moyenne et nombre de véhicules).</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://raw.githubusercontent.com/TAbdellah/u3/main/TP2026/TP8.xlsx?raw=true"
+                    class="download-btn" download="Exercices_TP8.xlsx">
+                    <span>⬇️</span> TP8.xlsx
+                </a>
             </div>
 
             <div class="card coming-soon">
